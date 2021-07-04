@@ -15,9 +15,9 @@ class ProductsRouter {
         productsRouter.get('/id/:id', this.ProductsController.getProductById);
         productsRouter.get('/category/:category', this.ProductsController.getProductByCategory);
         productsRouter.post('/', this.ProductsController.addProduct);
-        productsRouter.patch('/:id', this.ProductsController.updateProductById);
-        productsRouter.delete('/:id', this.ProductsController.deleteProduct);
-        productsRouter.get('/*', (req, res) => {res.json({message: `There's nothing to see here`})})
+        productsRouter.patch('/id/:id', this.ProductsController.updateProductById);
+        productsRouter.delete('/id/:id', this.ProductsController.deleteProduct);
+        productsRouter.get('/*', (req, res) => {res.json({message: `Please request a valid url`})})
     
         return productsRouter;
     }

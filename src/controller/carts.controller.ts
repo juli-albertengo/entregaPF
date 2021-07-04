@@ -17,6 +17,7 @@ export class CartsController {
         }
         catch (error){
             console.log(error);
+            res.json({message: "There has been an error fetching the cart."});
         }
     }
 
@@ -34,6 +35,7 @@ export class CartsController {
         }
         catch (error){
             console.log(error);
+            res.json({message: "There has been an error saving the cart"})
         }
     }
 
@@ -48,11 +50,12 @@ export class CartsController {
                 let cart = await this.apiCarts.deleteProductFromCart(id, productToDelete)
                 res.json(cart);
             } else {
-                res.json({error: `Must provide either productsToAdd or productToDelete`})
+                res.json({message: `Must provide either productsToAdd or productToDelete`})
             }
         }
         catch (error){
             console.log(error);
+            res.json({message: "There has been an error updating the cart."})
         }
     }
 
@@ -64,6 +67,7 @@ export class CartsController {
         }
         catch (error){
             console.log(error)
+            res.json({message: "There has been an error deleting the cart."})
         }
     }
 }

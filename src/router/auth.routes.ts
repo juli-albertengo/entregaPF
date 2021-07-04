@@ -11,7 +11,7 @@ class AuthRouter {
     }
 
     start(){
-        authRouter.post('/singup',  this.AuthController.signup);
+        authRouter.post('/signup',  this.AuthController.signup);
         authRouter.post('/login', this.AuthController.login);
         authRouter.get('/logout', this.AuthController.logout);
         authRouter.get('/*', (req, res) => {res.json({message: `There's nothing to see here`})});

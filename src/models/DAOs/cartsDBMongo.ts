@@ -7,13 +7,11 @@ export class CartsDBMongoDAO {
     public connection: any;
 
     constructor() {
-        (async() => {
-           this.connection = await mongoDBConnection.Get()
-        })()
     }
 
     async getCartById(id: string){
         try {
+            this.connection = await mongoDBConnection.Get()
             let cart = await cartModel.findOne({_id: id})
             if(!cart){
                 return {}
@@ -28,6 +26,7 @@ export class CartsDBMongoDAO {
     async addCart(cart: typeof Cart){
         let cartToSave = new cartModel(cart);
         try {
+            this.connection = await mongoDBConnection.Get()
             let savedCart = await cartToSave.save();
             return savedCart
         } catch (error){
@@ -39,6 +38,7 @@ export class CartsDBMongoDAO {
     async addProductsToCart(id: string, productsToAdd: Array<typeof Product>){
         //Encontrar el carrito y modificarlo
         try {
+            this.connection = await mongoDBConnection.Get()
             let cart = await cartModel.findOne({_id: id})
             if(!cart){
                 return {}
@@ -61,6 +61,7 @@ export class CartsDBMongoDAO {
     async deleteProductFromCart(id: string, productToDelete: any){
         //Encontrar el carrito
         try {
+            this.connection = await mongoDBConnection.Get()
             let cart = await cartModel.findOne({_id: id})
             if(!cart){
                 return {}
@@ -84,6 +85,7 @@ export class CartsDBMongoDAO {
 
     async deleteCart(id: string){
         try {
+            this.connection = await mongoDBConnection.Get()
             let cart = await cartModel.deleteOne({_id: id})
             if(!cart){
                 return {error: `Product not found`}

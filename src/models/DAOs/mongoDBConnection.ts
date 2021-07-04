@@ -24,7 +24,6 @@ class MongoDBConnection{
         try{
             this.instance++;
             console.log(`DbConnection called ${this.instance} times`);
-            console.log(this.db);
 
             if(this.db != null){
                 console.log(`Connection is already alive`);

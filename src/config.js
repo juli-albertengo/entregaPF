@@ -1,8 +1,8 @@
 require('dotenv').config()
 
 module.exports = {
-    PORT: process.env.PORT,
-    NODE_ENV: process.env.NODE_ENV,
+    PORT: process.env.PORT || 8080,
+    NODE_ENV: process.env.NODE_ENV || 'development',
     TYPE_OF_PERSISTANCE: process.env.TYPE_OF_PERSISTANCE || 'MONGO',
     MONGO_CONNECTION_STRING: process.env.MONGO_CONNECTION_STRING,
     PASSPORT_SECRET: process.env.PASSPORT_SECRET,

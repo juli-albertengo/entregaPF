@@ -6,13 +6,11 @@ export class ProductsDBMongoDAO {
     public connection: any;
 
     constructor() {
-        (async() => {
-           this.connection = await mongoDBConnection.Get()
-        })()
     }
 
     async getAllProducts(){
         try {
+            this.connection = await mongoDBConnection.Get()
             const products = await productModel.find({})
             if(products === null || products === []){
                 return []
@@ -26,6 +24,7 @@ export class ProductsDBMongoDAO {
 
     async getProductsByCategory(category: string){
         try{
+            this.connection = await mongoDBConnection.Get()
             let products = await productModel.find({category: category})
             if(products === null || products === []){
                 return []
@@ -40,6 +39,7 @@ export class ProductsDBMongoDAO {
 
     async getProductById(id: string){
         try {
+            this.connection = await mongoDBConnection.Get()
             let product = await productModel.findOne({_id: id})
             if(!product){
                 return {}
@@ -54,6 +54,7 @@ export class ProductsDBMongoDAO {
     async addProduct(product: typeof Product){
         let productToSave = new productModel(product);
         try {
+            this.connection = await mongoDBConnection.Get()
             let savedProduct = await productToSave.save();
             return savedProduct;
         } catch (error) {
@@ -64,6 +65,7 @@ export class ProductsDBMongoDAO {
 
     async updateProductById(id: string, updatedProduct: typeof Product){
         try {
+            this.connection = await mongoDBConnection.Get()
             let product = await productModel.updateOne({_id: id}, {$set: updatedProduct});
             if(!product){
                 return {error : 'Product not found'}
@@ -77,6 +79,7 @@ export class ProductsDBMongoDAO {
 
     async deleteProduct(id: string){
         try {
+            this.connection = await mongoDBConnection.Get()
             let product = await productModel.deleteOne({_id: id})
             if(!product){
                 return {error: `Product not found`}

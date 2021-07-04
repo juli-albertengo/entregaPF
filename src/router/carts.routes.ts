@@ -13,9 +13,9 @@ class CartsRouter {
     start(){
         cartsRouter.get('/id/:id', this.cartsController.getCartById);
         cartsRouter.post('/', this.cartsController.addCart);
-        cartsRouter.patch('/:id', this.cartsController.updateCartById);
-        cartsRouter.delete('/:id', this.cartsController.deleteCart);
-        cartsRouter.get('/*', (req, res) => {res.json({message: `There's nothing to see here`})})
+        cartsRouter.patch('/id/:id', this.cartsController.updateCartById);
+        cartsRouter.delete('/id/:id', this.cartsController.deleteCart);
+        cartsRouter.get('/*', (req, res) => {res.json({message: `Please request a valid url`})})
     
         return cartsRouter;
     }

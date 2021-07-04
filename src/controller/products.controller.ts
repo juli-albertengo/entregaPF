@@ -16,6 +16,7 @@ export class ProductsController {
         }
         catch(error) {
             console.log(error)
+            res.json({message: "There has been an error fetching the products."});
         }
     }
 
@@ -28,6 +29,7 @@ export class ProductsController {
         }
         catch(error) {
             console.log(error)
+            res.json({message: "There has been an error fetching the products."})
         }
     }
 
@@ -40,6 +42,7 @@ export class ProductsController {
         }
         catch (error){
             console.log(error);
+            res.json({message: "There has been an error fetching the product."})
         }
     }
 
@@ -58,6 +61,7 @@ export class ProductsController {
         }
         catch (error){
             console.log(error);
+            res.json({message: "There has been an error saving the product."})
         }
     }
 
@@ -77,6 +81,7 @@ export class ProductsController {
         }
         catch (error){
             console.log(error);
+            res.json({message: "There has been an error updating the product."})
         }
     }
 
@@ -88,6 +93,7 @@ export class ProductsController {
         }
         catch (error){
             console.log(error)
+            res.json({message: "There has been an error deleting the product."})
         }
     }
 }

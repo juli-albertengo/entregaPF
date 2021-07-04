@@ -1,28 +1,21 @@
-const config = require('../config');
-import mongoose from 'mongoose';
+import mongoDBConnection from '../models/DAOs/mongoDBConnection';
 import {Request, Response} from 'express';
-import userModel from '../models/model/user.model';
+const userModel = require('../models/model/user.model');
 const {createHash, issueJWT, isValidPassword} = require('../utils/passportUtils');
 const {sendRegistrationEmail} = require('../utils/nodemailerUtils');
 
 
 export class AuthController{
+  public connection: any;
 
     constructor() {
-        (async () => {
-            try {
-                await mongoose.connect(config.MONGO_CONNECTION_STRING, {useNewUrlParser: true, useUnifiedTopology: true})
-                console.log(`'DB Connection established'`)
-            } catch (error) {
-                console.log(error);
-            }
-        })()
     }
 
     async signup(req: Request, res: Response){
         const username = req.body.username;
         const password = req.body.password; 
         try {
+          await mongoDBConnection.Get()
           userModel.findOne({'username': username}, function(err: any, user: any){
             if(err){
               console.log('Error in signup: ' + err);
