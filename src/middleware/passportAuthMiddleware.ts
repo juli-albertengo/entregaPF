@@ -1,5 +1,5 @@
 const config = require('../config');
-import mongoDBConnection from'../models/DAOs/mongoDBConnection';
+import mongoDBConnection from'../services/mongoDBConnection';
 const userModel = require('../models/model/user.model');
 const JWTstrategy = require('passport-jwt').Strategy;
 const ExtractJWT = require('passport-jwt').ExtractJwt;

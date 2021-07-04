@@ -1,4 +1,4 @@
-import mongoDBConnection from '../models/DAOs/mongoDBConnection';
+import mongoDBConnection from '../services/mongoDBConnection';
 import {Request, Response} from 'express';
 const userModel = require('../models/model/user.model');
 const {createHash, issueJWT, isValidPassword} = require('../utils/passportUtils');

@@ -5,7 +5,6 @@ export class OrdersFactoryDAO {
         switch(typeOfPersistance) {
             //case 'MEM': return new OrdersMemDAO()
             //case 'FILE': return new OrdersFileDAO(process.cwd() + '/noticias.json')
-            //case 'GRAPHQL': return new OrdersGraphQLDAO()
             case 'MONGO': return new OrdersDBMongoDAO()
             default: return new OrdersDBMongoDAO()
         }

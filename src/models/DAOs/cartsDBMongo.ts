@@ -1,4 +1,4 @@
-import mongoDBConnection from './mongoDBConnection';
+import mongoDBConnection from '../../services/mongoDBConnection';
 import Product from '../model/products.model';
 import {Cart} from '../model/carts.model';
 import cartModel from '../model/carts.model';
