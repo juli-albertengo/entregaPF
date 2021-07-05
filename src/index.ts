@@ -6,6 +6,7 @@ const jwtStrategy = require('./middleware/passportAuthMiddleware');
 const app = express()
 
 import ProductsRouter from './router/products.routes';
+import ProductsRouterGraphQL from './router/products.routes.GQL';
 import CartsRouter from './router/carts.routes';
 import OrdersRouter from './router/orders.routes';
 import AuthRouter from './router/auth.routes';
@@ -13,6 +14,7 @@ import UserRouter from './router/user.routes';
 
 
 const routerProducts = new ProductsRouter();
+const routerProductsGQL = new ProductsRouterGraphQL();
 const routerCarts = new CartsRouter();
 const routerOrders = new OrdersRouter();
 const routerAuth = new AuthRouter();
@@ -27,6 +29,7 @@ passport.use(jwtStrategy);
 app.use(express.static('public'));
 
 app.use('/products', routerProducts.start());
+app.use('/gql/products', routerProductsGQL.start());
 app.use('/carts', routerCarts.start());
 app.use('/orders', routerOrders.start());
 app.use('/auth', routerAuth.start());
