@@ -1,5 +1,9 @@
 const config = require('../config');
-const nodemailer = require('nodemailer')
+const nodemailer = require('nodemailer');
+const {loggerFile} = require('../services/logger');
+const {loggerEthereal} = require('../services/logger');
+const errorLog = loggerFile.GetLogger();
+const etherealLog = loggerEthereal.GetLogger();
 
 const transporter = nodemailer.createTransport({
     host: 'smtp.ethereal.email',
@@ -21,10 +25,10 @@ const sendRegistrationEmail = (userName) => {
 
     transporter.sendMail(mailOptionsForRegistration, (err, info) => {
         if(err) {
-            console.log(err)
+            errorLog.error(err);
             return err
         }
-        console.log(info);
+        etherealLog.info(info);
     })
 } 
 
@@ -38,10 +42,10 @@ const sendNewOrderEmail = (cartMail) => {
 
     transporter.sendMail(mailOptionsForNewOrder, (err, info) => {
         if(err) {
-            console.log(err)
+            errorLog.error(err);
             return err
         }
-        console.log(info);
+        etherealLog.info(info);
     })
 }
 

@@ -7,7 +7,7 @@ class CartsRouter {
     public cartsController: CartsController;
 
     constructor(){
-        this.cartsController = new CartsController()
+        this.cartsController = new CartsController();
     }
 
     start(){

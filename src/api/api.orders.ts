@@ -1,11 +1,11 @@
-const config = require('../config');
+//const config = require('../config');
 import {OrdersFactoryDAO} from '../models/DAOs/ordersFactoryDAO'
 
 export class ApiOrders {
     public ordersDAO: any
 
     constructor() {
-        this.ordersDAO = OrdersFactoryDAO.get(config.TYPE_OF_PERSISTANCE)
+        this.ordersDAO = OrdersFactoryDAO.get('MONGO')
     }
 
     async getOrderById(id: string){

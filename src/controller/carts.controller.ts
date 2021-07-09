@@ -1,5 +1,7 @@
-import {Request, Response} from 'express';
-import {ApiCarts} from '../api/api.carts'
+import { Request, Response } from 'express';
+import {ApiCarts} from '../api/api.carts';
+const {loggerFile} = require('../services/logger');
+const errorLog = loggerFile.GetLogger();
 
 export class CartsController {
     public apiCarts: ApiCarts;
@@ -16,8 +18,8 @@ export class CartsController {
             res.json(cart);
         }
         catch (error){
-            console.log(error);
-            res.json({message: "There has been an error fetching the cart."});
+            errorLog.error(error);
+            res.json({error: "There has been an error fetching the cart."});
         }
     }
 
@@ -34,8 +36,8 @@ export class CartsController {
             res.json(addedCart);
         }
         catch (error){
-            console.log(error);
-            res.json({message: "There has been an error saving the cart"})
+            errorLog.error(error);
+            res.json({error: "There has been an error saving the cart"})
         }
     }
 
@@ -54,8 +56,8 @@ export class CartsController {
             }
         }
         catch (error){
-            console.log(error);
-            res.json({message: "There has been an error updating the cart."})
+            errorLog.error(error);
+            res.json({error: "There has been an error updating the cart."})
         }
     }
 
@@ -66,8 +68,8 @@ export class CartsController {
             res.json(deletedCart);
         }
         catch (error){
-            console.log(error)
-            res.json({message: "There has been an error deleting the cart."})
+            errorLog.error(error)
+            res.json({error: "There has been an error deleting the cart."})
         }
     }
 }

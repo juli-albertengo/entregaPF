@@ -7,7 +7,7 @@ class OrdersRouter {
     public ordersController: OrdersController;
 
     constructor(){
-        this.ordersController = new OrdersController()
+        this.ordersController = new OrdersController();
     }
 
     start(){

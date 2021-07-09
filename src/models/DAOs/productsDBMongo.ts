@@ -1,6 +1,7 @@
 import mongoDBConnection from '../../services/mongoDBConnection';
-import Product from '../model/products.model';
 import productModel from '../model/products.model';
+const {loggerFile} = require('../../services/logger');
+const errorLog = loggerFile.GetLogger();
 
 export class ProductsDBMongoDAO {
     public connection: any;
@@ -17,7 +18,7 @@ export class ProductsDBMongoDAO {
             }
             return products;
         } catch (error){
-            console.log(error)
+            errorLog.error(error)
             return [];
         }
     }
@@ -31,7 +32,7 @@ export class ProductsDBMongoDAO {
             }
             return products;
         } catch (error){
-            console.log(error)
+            errorLog.error(error)
             return [];
         }
 
@@ -46,33 +47,34 @@ export class ProductsDBMongoDAO {
             }
             return product;
         } catch (error){
-            console.log(error)
+            errorLog.error(error)
             return {};
         }
     }
 
-    async addProduct(product: typeof Product){
+    async addProduct(product: any){
         let productToSave = new productModel(product);
         try {
             this.connection = await mongoDBConnection.Get()
             let savedProduct = await productToSave.save();
             return savedProduct;
         } catch (error) {
-            console.log(error);
+            errorLog.error(error);
             return {}
         }
     }
 
-    async updateProductById(id: string, updatedProduct: typeof Product){
+    async updateProductById(id: string, updatedProduct: any){
         try {
             this.connection = await mongoDBConnection.Get()
-            let product = await productModel.updateOne({_id: id}, {$set: updatedProduct});
-            if(!product){
-                return {error : 'Product not found'}
+            let responseModification = await productModel.updateOne({_id: id}, {$set: updatedProduct});
+            if(responseModification.nModified <= 0){
+                return {}
             }
-            return product;
+            const modifiedProduct = await productModel.findOne({_id: id})
+            return modifiedProduct;
         } catch (error) {
-            console.log(error);
+            errorLog.error(error);
             return {}
         }
     }
@@ -80,13 +82,15 @@ export class ProductsDBMongoDAO {
     async deleteProduct(id: string){
         try {
             this.connection = await mongoDBConnection.Get()
-            let product = await productModel.deleteOne({_id: id})
-            if(!product){
-                return {error: `Product not found`}
+            const deletedProduct = await productModel.findOne({_id: id})
+            let responseDeletion = await productModel.deleteOne({_id: id})
+            if(responseDeletion.deletedCount > 0){
+                return deletedProduct
+            } else {
+                return {};
             }
-            return product;
         } catch (error){
-            console.log(error);
+            errorLog.error(error);
             return {}
         }
     }

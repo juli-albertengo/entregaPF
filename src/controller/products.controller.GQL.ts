@@ -1,10 +1,12 @@
 import {ApiProducts} from '../api/api.products'
+const {loggerFile} = require('../services/logger');
+const errorLog = loggerFile.GetLogger();
 
 export class ProductsControllerGQL {
     public apiProducts: ApiProducts;
 
     constructor() {
-        this.apiProducts = new ApiProducts()
+        this.apiProducts = new ApiProducts();
     }
 
     getAllProducts = async () => {
@@ -13,8 +15,8 @@ export class ProductsControllerGQL {
             return products;
         }
         catch(error) {
-            console.log(error)
-            return {message: "There has been an error fetching the products."};
+            errorLog.error(error)
+            return {error: "There has been an error fetching the products."};
         }
     }
 
@@ -24,8 +26,19 @@ export class ProductsControllerGQL {
             return product
         }
         catch (error){
-            console.log(error);
-            return {message: "There has been an error fetching the product."}
+            errorLog.error(error);
+            return {error: "There has been an error fetching the product."}
+        }
+    }
+
+    getProductByCategory = async(category: string) => {
+        try {
+            let products = await this.apiProducts.getProductsByCategory(category);
+            return products
+        }
+        catch(error) {
+            errorLog.error(error)
+            return {error: "There has been an error fetching the products."}
         }
     }
 
@@ -43,8 +56,30 @@ export class ProductsControllerGQL {
             return addedProduct
         }
         catch (error){
-            console.log(error);
-            return {message: "There has been an error saving the product."};
+            errorLog.error(error);
+            return {error: "There has been an error saving the product."};
+        }
+    }
+
+    updateProductById = async(id: string, product: any) => {
+        try {
+            let modifiedProduct = await this.apiProducts.updateProductById(id, product);
+            return modifiedProduct
+        }
+        catch (error){
+            errorLog.error(error);
+            return {error: "There has been an error updating the product."}
+        }
+    }
+
+    deleteProduct = async(id: string) => {
+        try{
+            let deletedProduct = await this.apiProducts.deleteProduct(id);
+            return deletedProduct;
+        }
+        catch (error){
+            errorLog.error(error)
+            return {error: "There has been an error deleting the product."}
         }
     }
 

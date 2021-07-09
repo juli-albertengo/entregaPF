@@ -1,6 +1,7 @@
 import mongoDBConnection from '../../services/mongoDBConnection';
-import {Order} from '../model/orders.model';
 import orderModel from '../model/orders.model';
+const {loggerFile} = require('../../services/logger');
+const errorLog = loggerFile.GetLogger();
 
 export class OrdersDBMongoDAO {
     public connection: any;
@@ -17,33 +18,34 @@ export class OrdersDBMongoDAO {
             }
             return cart;
         } catch (error){
-            console.log(error)
+            errorLog.error(error)
             return {};
         }
     }
 
-    async addOrder(order: typeof Order){
+    async addOrder(order: any){
         let orderToSave = new orderModel(order);
         try {
             this.connection = await mongoDBConnection.Get()
             let savedOrder = await orderToSave.save();
             return savedOrder
         } catch (error){
-            console.log(error);
+            errorLog.error(error);
             return {}
         }
     }
 
-    async updateOrderById(id: string, updatedOrder: typeof Order){
+    async updateOrderById(id: string, updatedOrder: any){
         try {
             this.connection = await mongoDBConnection.Get()
-            let order = await orderModel.updateOne({_id: id}, {$set: updatedOrder});
-            if(!order){
-                return {error : 'Order not found'}
+            let responseModification = await orderModel.updateOne({_id: id}, {$set: updatedOrder});
+            if(responseModification.nModified <= 0){
+                return {}
             }
-            return order;
+            const modifiedOrder = await orderModel.findOne({_id: id})
+            return modifiedOrder;
         } catch (error) {
-            console.log(error);
+            errorLog.error(error);
             return {}
         }
     }
@@ -51,13 +53,15 @@ export class OrdersDBMongoDAO {
     async deleteOrder(id: string){
         try {
             this.connection = await mongoDBConnection.Get()
-            let order = await orderModel.deleteOne({_id: id})
-            if(!order){
-                return {error: `Order not found`}
+            const deletedOrder = await orderModel.findOne({_id: id})
+            let responseDeletion = await orderModel.deleteOne({_id: id})
+            if(responseDeletion.deletedCount > 0){
+                return deletedOrder
+            } else {
+                return {};
             }
-            return order;
         } catch (error){
-            console.log(error);
+            errorLog.error(error);
             return {}
         }
     }

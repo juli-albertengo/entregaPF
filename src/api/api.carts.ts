@@ -1,11 +1,11 @@
-const config = require('../config');
-import {CartsFactoryDAO} from '../models/DAOs/cartsFactoryDAO'
+//const config = require('../config');
+import { CartsFactoryDAO } from '../models/DAOs/cartsFactoryDAO'
 
 export class ApiCarts {
-    public cartsDAO: any
+    public cartsDAO: any;
 
     constructor() {
-        this.cartsDAO = CartsFactoryDAO.get(config.TYPE_OF_PERSISTANCE)
+        this.cartsDAO = CartsFactoryDAO.get('MONGO')
     }
 
     async getCartById(id: string){

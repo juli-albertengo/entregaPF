@@ -1,5 +1,7 @@
 import {Request, Response} from 'express';
 import {ApiProducts} from '../api/api.products'
+const {loggerFile} = require('../services/logger');
+const errorLog = loggerFile.GetLogger();
 
 export class ProductsController {
     public apiProducts: ApiProducts;
@@ -15,8 +17,8 @@ export class ProductsController {
             res.json(products);
         }
         catch(error) {
-            console.log(error)
-            res.json({message: "There has been an error fetching the products."});
+            errorLog.error(error)
+            res.json({error: "There has been an error fetching the products."});
         }
     }
 
@@ -28,8 +30,8 @@ export class ProductsController {
             res.json(products);
         }
         catch(error) {
-            console.log(error)
-            res.json({message: "There has been an error fetching the products."})
+            errorLog.error(error)
+            res.json({error: "There has been an error fetching the products."})
         }
     }
 
@@ -41,8 +43,8 @@ export class ProductsController {
             res.json(product);
         }
         catch (error){
-            console.log(error);
-            res.json({message: "There has been an error fetching the product."})
+            errorLog.error(error);
+            res.json({error: "There has been an error fetching the product."})
         }
     }
 
@@ -60,16 +62,16 @@ export class ProductsController {
             res.json(addedProduct);
         }
         catch (error){
-            console.log(error);
-            res.json({message: "There has been an error saving the product."})
+            errorLog.error(error);
+            res.json({error: "There has been an error saving the product."})
         }
     }
 
     updateProductById = async(req: Request, res: Response) => {
         try {
-            const {id, name, category, description, foto, price} = req.body;
+            const {id} = req.params;
+            const {name, category, description, foto, price} = req.body;
             let product = {
-                _id: id,
                 name,
                 category,
                 description,
@@ -80,8 +82,8 @@ export class ProductsController {
             res.json(modifiedProduct);
         }
         catch (error){
-            console.log(error);
-            res.json({message: "There has been an error updating the product."})
+            errorLog.error(error);
+            res.json({error: "There has been an error updating the product."})
         }
     }
 
@@ -92,8 +94,8 @@ export class ProductsController {
             res.json(deletedProduct);
         }
         catch (error){
-            console.log(error)
-            res.json({message: "There has been an error deleting the product."})
+            errorLog.error(error)
+            res.json({error: "There has been an error deleting the product."})
         }
     }
 }

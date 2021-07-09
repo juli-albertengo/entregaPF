@@ -1,8 +1,13 @@
 import mongoDBConnection from '../services/mongoDBConnection';
-import {Request, Response} from 'express';
+import { Request, Response } from 'express';
 const userModel = require('../models/model/user.model');
-const {createHash, issueJWT, isValidPassword} = require('../utils/passportUtils');
-const {sendRegistrationEmail} = require('../utils/nodemailerUtils');
+import { User } from '../models/model/user.model'
+const { createHash, issueJWT, isValidPassword } = require('../utils/passportUtils');
+const { sendRegistrationEmail } = require('../utils/nodemailerUtils');
+const {loggerFile} = require('../services/logger');
+const errorLog = loggerFile.GetLogger();
+const {loggerConsole} = require('../services/logger');
+const consoleLog = loggerConsole.GetLogger();
 
 
 export class AuthController{
@@ -16,14 +21,14 @@ export class AuthController{
         const password = req.body.password; 
         try {
           await mongoDBConnection.Get()
-          userModel.findOne({'username': username}, function(err: any, user: any){
+          userModel.findOne({'username': username}, function(err: any, user: User){
             if(err){
-              console.log('Error in signup: ' + err);
+              errorLog.error('Error in signup: ' + err);
               res.json({error: `There has been an error in signup => ${err}`})
             }
             if(user){
-              console.log('User already exists');
-              res.json({error: 'User already exists.'})
+              consoleLog.warn('User already exists');
+              res.json({error: `User already exists => ${user}`})
             } else {
               var newUser = new userModel();
               newUser.firstName = req.body.firstName;
@@ -33,15 +38,15 @@ export class AuthController{
               if( password) {
                 newUser.password = createHash(password);
                 try {
-                  newUser.save(function(err: any, user: any){
+                  newUser.save(function(err: any, user: User){
                     if(err){
-                      console.log('Error saving user: ' + err)
-                      res.render('error.ejs', {message: `There has been an error saving new user in DB => ${err}`})
+                      errorLog.error(`Error saving user: => ${err}`)
+                      res.json({error: `There has been an error saving new user in DB => ${err}`})
                     }
-                      console.log('User registration completed successfully');
+                      consoleLog.info('User registration completed successfully');
                       sendRegistrationEmail(user.firstName);
                       const jwToken = issueJWT(user);
-                      res.json({user, token: jwToken})
+                      res.json({user, token: jwToken});
                     })
                   } catch (error) {
                     res.json({error: `There has been an error saving new user in DB => ${error}`});
@@ -52,7 +57,7 @@ export class AuthController{
             }
           })
         } catch (error){
-          console.log(error);
+          errorLog.error(error);
           res.json({error: `There has been an error in signup => ${error}`});
         }
     }
@@ -61,9 +66,9 @@ export class AuthController{
         const username = req.body.username;
         const password = req.body.password;
         try {
-            userModel.findOne({'username': username}, function(err: any, user: any){
+            userModel.findOne({'username': username}, function(err: any, user: User){
             if(err){
-                console.log(`Error login: ${err}`)
+                errorLog.error(`Error login: ${err}`)
                 res.json({error: `There has been an error during login ${err}`})
             }
             if(!user){
@@ -79,7 +84,7 @@ export class AuthController{
             }
             })
         } catch (error) {
-            console.log(error);
+            errorLog.error(error);
             res.json(`There has been an error during login => ${error}`)
         }
     }

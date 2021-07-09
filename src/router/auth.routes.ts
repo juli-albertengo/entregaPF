@@ -7,14 +7,14 @@ class AuthRouter {
     public AuthController: AuthController;
 
     constructor(){
-        this.AuthController = new AuthController()
+        this.AuthController = new AuthController();
     }
 
     start(){
         authRouter.post('/signup',  this.AuthController.signup);
         authRouter.post('/login', this.AuthController.login);
         authRouter.get('/logout', this.AuthController.logout);
-        authRouter.get('/*', (req, res) => {res.json({message: `There's nothing to see here`})});
+        authRouter.get('/*', (req, res) => {res.json({message: `Please request a valid url`})});
     
         return authRouter;
     }

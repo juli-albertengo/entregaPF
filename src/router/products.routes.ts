@@ -7,7 +7,7 @@ class ProductsRouter {
     public ProductsController: ProductsController;
 
     constructor(){
-        this.ProductsController = new ProductsController()
+        this.ProductsController = new ProductsController();
     }
 
     start(){

@@ -1,5 +1,7 @@
 import {Request, Response} from 'express';
-import {ApiOrders} from '../api/api.orders'
+import {ApiOrders} from '../api/api.orders';
+const {loggerFile} = require('../services/logger');
+const errorLog = loggerFile.GetLogger();
 
 export class OrdersController {
     public apiOrders: ApiOrders;
@@ -16,8 +18,8 @@ export class OrdersController {
             res.json(order);
         }
         catch (error){
-            console.log(error);
-            res.json({message: "There has been an error fetching the order."});
+            errorLog.error(error);
+            res.json({error: "There has been an error fetching the order."});
         }
     }
 
@@ -35,14 +37,15 @@ export class OrdersController {
             res.json(addedOrder);
         }
         catch (error){
-            console.log(error);
-            res.json({message: "There has been an error saving the order"})
+            errorLog.error(error);
+            res.json({error: "There has been an error saving the order"})
         }
     }
 
     updateOrderById = async(req: Request, res: Response) => {
         try {
-            const {id, items, nroOrder, timestamp, status, email} = req.body;
+            const {id} = req.params;
+            const {items, nroOrder, timestamp, status, email} = req.body;
             const order = {
                 _id: id,
                 items,
@@ -55,8 +58,8 @@ export class OrdersController {
             res.json(modifiedOrder);
         }
         catch (error){
-            console.log(error);
-            res.json({message: "There has been an error updating the order."})
+            errorLog.error(error);
+            res.json({error: "There has been an error updating the order."})
         }
     }
 
@@ -67,8 +70,8 @@ export class OrdersController {
             res.json(deletedOrder);
         }
         catch (error){
-            console.log(error)
-            res.json({message: "There has been an error deleting the cart."})
+            errorLog.error(error)
+            res.json({error: "There has been an error deleting the cart."})
         }
     }
 }

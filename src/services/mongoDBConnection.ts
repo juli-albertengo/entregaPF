@@ -1,5 +1,9 @@
 const config = require('../config');
 const mongoose = require('mongoose');
+const {loggerFile} = require('./logger');
+const errorLog = loggerFile.GetLogger();
+const {loggerConsole} = require('./logger');
+const consoleLog = loggerConsole.GetLogger();
 
 class MongoDBConnection{
     public db: any;
@@ -12,10 +16,11 @@ class MongoDBConnection{
 
     static async dbConnect(){
         try {
-            await mongoose.connect(config.MONGO_CONNECTION_STRING, {useNewUrlParser: true, useUnifiedTopology: true})
-            console.log(`Se llamo a dbConnect`);
+            await mongoose.connect(config.MONGO_CONNECTION_STRING, {useNewUrlParser: true, useUnifiedTopology: true});
+            //consoleLog.info(`dbConnect was called`);
             return `Mongo DB Connection established`;
         } catch (error) {
+            errorLog.error(error)
             return error;
         }
     }
@@ -23,17 +28,18 @@ class MongoDBConnection{
     async Get(){
         try{
             this.instance++;
-            console.log(`DbConnection called ${this.instance} times`);
+            //consoleLog.info(`DbConnection called ${this.instance} times`);
 
             if(this.db != null){
-                console.log(`Connection is already alive`);
+                //consoleLog.debug(`Connection is already alive`);
                 return this.db;
             } else {
-                console.log(`Getting connection`);
+                consoleLog.info(`Getting connection`);
                 this.db = await MongoDBConnection.dbConnect();
                 return this.db
             }
         } catch(error){
+            errorLog.error(error)
             return error;
         }
     }

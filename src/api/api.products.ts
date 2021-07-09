@@ -1,5 +1,5 @@
 const config = require('../config');
-import {ProductsFactoryDAO} from '../models/DAOs/productsFactoryDAO'
+import {ProductsFactoryDAO} from '../models/DAOs/productsFactoryDAO';
 
 export class ApiProducts {
     public productsDAO: any

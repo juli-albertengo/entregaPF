@@ -1,7 +1,7 @@
 import mongoDBConnection from '../../services/mongoDBConnection';
-import Product from '../model/products.model';
-import {Cart} from '../model/carts.model';
 import cartModel from '../model/carts.model';
+const {loggerFile} = require('../../services/logger');
+const errorLog = loggerFile.GetLogger();
 
 export class CartsDBMongoDAO {
     public connection: any;
@@ -18,24 +18,24 @@ export class CartsDBMongoDAO {
             }
             return cart;
         } catch (error){
-            console.log(error)
+            errorLog.error(error)
             return {};
         }
     }
 
-    async addCart(cart: typeof Cart){
+    async addCart(cart: any){
         let cartToSave = new cartModel(cart);
         try {
             this.connection = await mongoDBConnection.Get()
             let savedCart = await cartToSave.save();
             return savedCart
         } catch (error){
-            console.log(error);
+            errorLog.error(error);
             return {}
         }
     }
 
-    async addProductsToCart(id: string, productsToAdd: Array<typeof Product>){
+    async addProductsToCart(id: string, productsToAdd: any){
         //Encontrar el carrito y modificarlo
         try {
             this.connection = await mongoDBConnection.Get()
@@ -49,11 +49,11 @@ export class CartsDBMongoDAO {
                 let modifiedCart = await cart.save();
                 return modifiedCart
             } catch (error) {
-                console.log(error);
-                return {error: `There has been an error saving new cart => ${error}`}
+                errorLog.error(error);
+                return {}
             }
         } catch (error){
-            console.log(error)
+            errorLog.error(error)
             return {};
         }
     }
@@ -74,11 +74,11 @@ export class CartsDBMongoDAO {
                 let modifiedCart = await cart.save();
                 return modifiedCart
             } catch (error) {
-                console.log(error);
-                return {error: `There has been an error saving new cart => ${error}`}
+                errorLog.error(error);
+                return {}
             }
         } catch (error){
-            console.log(error)
+            errorLog.error(error)
             return {};
         }
     }
@@ -86,13 +86,15 @@ export class CartsDBMongoDAO {
     async deleteCart(id: string){
         try {
             this.connection = await mongoDBConnection.Get()
-            let cart = await cartModel.deleteOne({_id: id})
-            if(!cart){
-                return {error: `Product not found`}
+            const deletedCart = await cartModel.findOne({_id: id})
+            let responseDeletion = await cartModel.deleteOne({_id: id})
+            if(responseDeletion.deletedCount > 0){
+                return deletedCart
+            } else {
+                return {};
             }
-            return cart;
         } catch (error){
-            console.log(error);
+            errorLog.error(error);
             return {}
         }
     }

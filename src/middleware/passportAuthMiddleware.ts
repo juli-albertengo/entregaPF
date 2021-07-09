@@ -3,6 +3,8 @@ import mongoDBConnection from'../services/mongoDBConnection';
 const userModel = require('../models/model/user.model');
 const JWTstrategy = require('passport-jwt').Strategy;
 const ExtractJWT = require('passport-jwt').ExtractJwt;
+const {loggerFile} = require('../services/logger');
+const errorLog = loggerFile.GetLogger();
 
 const StrategyOptionsObject = {
     jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
@@ -23,7 +25,7 @@ const jwtStrategy = new JWTstrategy(StrategyOptionsObject, async function (paylo
             }
         });
     } catch (error){
-        console.log(error)
+        errorLog.error(error)
         return done(error, false);
     }
 });

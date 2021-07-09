@@ -1,10 +1,6 @@
 TODO: SOCKET IO
 
 - El chat de socket io
-- Incorporar el logger
-- Revisar que no quede clase any en la clase de productos
-- Revisar que esta todo como dice el proyecto final en mongoDB
-- Agarrar todo lo que no entra en los url definidos en un catch para que no se rompa todo
 - La documentación de la API
 - Testeo de las APIS
 - Revisar el .env y el config.js

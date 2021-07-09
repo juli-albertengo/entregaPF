@@ -21,7 +21,6 @@ export class Order{
 
 //MONGOOSE MODEL
 import mongoose from 'mongoose';
-import { EmitHelperUniqueNameCallback } from 'typescript'
 
 const order = 'order';
 
