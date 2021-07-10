@@ -1,10 +1,11 @@
+import path from 'path';
+const {ProductsFileDAO} = require('./productsFile');
 import {ProductsDBMongoDAO} from './productsDBMongo';
 
 export class ProductsFactoryDAO {
     static get(typeOfPersistance: string) {
         switch(typeOfPersistance) {
-            //case 'MEM': return new ProductsMemDAO()
-            //case 'FILE': return new ProductsFileDAO(process.cwd() + '/noticias.json')
+            case 'FILE': return new ProductsFileDAO(path.join(__dirname + '/../../services/products.json'))
             case 'MONGO': return new ProductsDBMongoDAO()
             default: return new ProductsDBMongoDAO()
         }
