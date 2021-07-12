@@ -1,5 +1,6 @@
 const config = require('../config');
 import {ProductsFactoryDAO} from '../models/DAOs/productsFactoryDAO';
+import {Product} from '../models/model/products.model';
 
 export class ApiProducts {
     public productsDAO: any
@@ -20,11 +21,11 @@ export class ApiProducts {
         return await this.productsDAO.getProductById(id)
     }
 
-    async addProduct(product: any) { 
+    async addProduct(product: Product) { 
         return await this.productsDAO.addProduct(product) 
     }
 
-    async updateProductById(id: string, product: any) { 
+    async updateProductById(id: string, product: Product) { 
         return await this.productsDAO.updateProductById(id,product) 
     }
     

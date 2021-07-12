@@ -1,4 +1,3 @@
-//const config = require('../config');
 import { CartsFactoryDAO } from '../models/DAOs/cartsFactoryDAO'
 
 export class ApiCarts {

@@ -39,7 +39,7 @@ app.get('/', (req: Request, res: Response)=>{
 })
 
 app.get('/error', (req: Request, res: Response)=> {
-    res.json({error: "There has been an unexpected error, please try again."})
+    res.json({error: "There has been an unexpected error, please try again."});
 })
 
 app.get('/*', (req: Request, res: Response) => {
@@ -47,5 +47,5 @@ app.get('/*', (req: Request, res: Response) => {
 })
 
 app.listen(config.PORT, ()=> {
-    console.log(`Server listening on ${config.PORT}`)
+    console.log(`Server listening on ${config.PORT}`);
 })

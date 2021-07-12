@@ -1,0 +1,28 @@
+[2021-07-11T22:16:37.543] [ERROR] fileLogger - [
+  ValidationError {
+    target: Product {
+      name: 'PRUEBA PATCHEANDO mongoDTO',
+      category: 'OTHER',
+      description: 'Its pretty',
+      foto: undefined,
+      price: undefined
+    },
+    value: undefined,
+    property: 'foto',
+    children: [],
+    constraints: { isNotEmpty: 'foto should not be empty' }
+  },
+  ValidationError {
+    target: Product {
+      name: 'PRUEBA PATCHEANDO mongoDTO',
+      category: 'OTHER',
+      description: 'Its pretty',
+      foto: undefined,
+      price: undefined
+    },
+    value: undefined,
+    property: 'price',
+    children: [],
+    constraints: { isNotEmpty: 'price should not be empty' }
+  }
+]

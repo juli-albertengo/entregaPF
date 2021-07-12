@@ -25,15 +25,19 @@ export class CartsController {
 
     addCart = async (req: Request, res: Response) => {
         try {
-            const {email, timestamp, deliveryAddress, products} = req.body;
-            const cart = {
-                email,
-                timestamp,
-                deliveryAddress,
-                products
+            const {email, deliveryAddress, products} = req.body;
+            if(
+                email !== undefined && email !== null &&
+                deliveryAddress !== undefined && deliveryAddress !== null &&
+                products !== undefined && products !== null
+            ){
+                const cart = {email, timestamp: new Date(Date.now()).toDateString(),deliveryAddress, products}
+                let addedCart = await this.apiCarts.addCart(cart);
+                res.json(addedCart);
+            } else {
+                errorLog.error(`User didn't provide the data required`)
+                res.json({})
             }
-            let addedCart = await this.apiCarts.addCart(cart);
-            res.json(addedCart);
         }
         catch (error){
             errorLog.error(error);

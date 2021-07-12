@@ -1,8 +1,15 @@
+import { IsNotEmpty } from 'class-validator';
+
 export class User {
+    @IsNotEmpty()
     public firstName: string
+    @IsNotEmpty()
     public lastName: string
+    @IsNotEmpty()
     public email: string
+    @IsNotEmpty()
     public username: string
+    @IsNotEmpty()
     public password: string
 
     constructor(firstName: string, lastName: string, email: string, username: string, password: string){

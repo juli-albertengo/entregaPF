@@ -1,5 +1,4 @@
-//const config = require('../config');
-import {OrdersFactoryDAO} from '../models/DAOs/ordersFactoryDAO'
+import {OrdersFactoryDAO} from '../models/DAOs/ordersFactoryDao';
 
 export class ApiOrders {
     public ordersDAO: any

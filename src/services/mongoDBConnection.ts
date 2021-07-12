@@ -20,7 +20,7 @@ class MongoDBConnection{
             //consoleLog.info(`dbConnect was called`);
             return `Mongo DB Connection established`;
         } catch (error) {
-            errorLog.error(error)
+            errorLog.error(error);
             return error;
         }
     }
@@ -39,7 +39,7 @@ class MongoDBConnection{
                 return this.db
             }
         } catch(error){
-            errorLog.error(error)
+            errorLog.error(error);
             return error;
         }
     }

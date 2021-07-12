@@ -1,5 +1,6 @@
 import mongoDBConnection from '../../services/mongoDBConnection';
 import productModel from '../model/products.model';
+import {Product} from '../model/products.model';
 const {loggerFile} = require('../../services/logger');
 const errorLog = loggerFile.GetLogger();
 
@@ -52,7 +53,7 @@ export class ProductsDBMongoDAO {
         }
     }
 
-    async addProduct(product: any){
+    async addProduct(product: Product){
         let productToSave = new productModel(product);
         try {
             this.connection = await mongoDBConnection.Get()
@@ -64,7 +65,7 @@ export class ProductsDBMongoDAO {
         }
     }
 
-    async updateProductById(id: string, updatedProduct: any){
+    async updateProductById(id: string, updatedProduct: Product){
         try {
             this.connection = await mongoDBConnection.Get()
             let responseModification = await productModel.updateOne({_id: id}, {$set: updatedProduct});

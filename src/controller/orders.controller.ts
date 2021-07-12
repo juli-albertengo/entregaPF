@@ -1,5 +1,6 @@
 import {Request, Response} from 'express';
 import {ApiOrders} from '../api/api.orders';
+const { sendNewOrderEmail } = require('../utils/nodemailerUtils');
 const {loggerFile} = require('../services/logger');
 const errorLog = loggerFile.GetLogger();
 
@@ -25,16 +26,21 @@ export class OrdersController {
 
     addOrder = async (req: Request, res: Response) => {
         try {
-            const {items, nroOrder, timestamp, status, email} = req.body;
-            const order = {
-                items,
-                nroOrder,
-                timestamp,
-                status,
-                email
+            const {items, nroOrder, status, email} = req.body;
+            if(
+                items !== undefined && items !== null &&
+                nroOrder !== undefined && nroOrder !== null &&
+                status !== undefined && status !== null &&
+                email !== undefined && email !== null
+            ){
+                const order = {items, nroOrder, status, timestamp: new Date(Date.now()).toDateString(), email,}
+                let addedOrder = await this.apiOrders.addOrder(order);
+                sendNewOrderEmail(email);
+                res.json(addedOrder);
+            } else {
+                errorLog.error(`User didn't provide the data required`)
+                res.json({})
             }
-            let addedOrder = await this.apiOrders.addOrder(order);
-            res.json(addedOrder);
         }
         catch (error){
             errorLog.error(error);
@@ -46,16 +52,19 @@ export class OrdersController {
         try {
             const {id} = req.params;
             const {items, nroOrder, timestamp, status, email} = req.body;
-            const order = {
-                _id: id,
-                items,
-                nroOrder,
-                timestamp,
-                status,
-                email
+            if(
+                items !== undefined && items !== null &&
+                nroOrder !== undefined && nroOrder !== null &&
+                status !== undefined && status !== null &&
+                email !== undefined && email !== null
+            ){
+                const order = {items, nroOrder, status, timestamp: new Date(Date.now()).toDateString(), email,}
+                let modifiedOrder = await this.apiOrders.updateOrderById(id, order);
+                res.json(modifiedOrder);
+            } else {
+                errorLog.error(`User didn't provide the data required`)
+                res.json({})
             }
-            let modifiedOrder = await this.apiOrders.updateOrderById(id, order);
-            res.json(modifiedOrder);
         }
         catch (error){
             errorLog.error(error);

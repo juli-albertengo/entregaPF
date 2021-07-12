@@ -1,5 +1,7 @@
-import {Request, Response} from 'express';
-import {ApiProducts} from '../api/api.products'
+import { Request, Response } from 'express';
+import {ApiProducts} from '../api/api.products';
+import  {Product} from '../models/model/products.model';
+import {validate} from 'class-validator';
 const {loggerFile} = require('../services/logger');
 const errorLog = loggerFile.GetLogger();
 
@@ -51,15 +53,15 @@ export class ProductsController {
     addProduct = async (req: Request, res: Response) => {
         try {
             const {name, category, description, foto, price} = req.body;
-            let product = {
-                name,
-                category,
-                description,
-                foto, 
-                price,
+            let product = new Product(name, category, description, foto, price)
+            const resultValidation = await validate(product);
+            if(resultValidation.length > 0){
+                errorLog.error(resultValidation);
+                res.json({});
+            } else {
+                let addedProduct = await this.apiProducts.addProduct(product);
+                res.json(addedProduct);
             }
-            let addedProduct = await this.apiProducts.addProduct(product);
-            res.json(addedProduct);
         }
         catch (error){
             errorLog.error(error);
@@ -71,17 +73,10 @@ export class ProductsController {
         try {
             const {id} = req.params;
             const {name, category, description, foto, price} = req.body;
-            let product = {
-                name,
-                category,
-                description,
-                foto, 
-                price
-            }
+            let product = new Product(name, category, description, foto, price)
             let modifiedProduct = await this.apiProducts.updateProductById(id, product);
             res.json(modifiedProduct);
-        }
-        catch (error){
+        } catch (error){
             errorLog.error(error);
             res.json({error: "There has been an error updating the product."})
         }

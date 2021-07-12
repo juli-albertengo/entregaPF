@@ -1,15 +1,19 @@
-import Product from './products.model'
+import productModel from './products.model'
+import { IsNotEmpty } from 'class-validator';
 
 export class Order{
-    public id: string
-    public items: Array<typeof Product>
+    @IsNotEmpty()
+    public items: Array<typeof productModel>
+    @IsNotEmpty()
     public nroOrder: number
+    @IsNotEmpty()
     public timestamp: string
+    @IsNotEmpty()
     public status: string
+    @IsNotEmpty()
     public email: string
 
-    constructor(id: string, items: Array<typeof Product>, nroOrder: number, timestamp: string, status: string, email: string){
-        this.id = id,
+    constructor(items: Array<typeof productModel>, nroOrder: number, timestamp: string, status: string, email: string){
         this.items = items,
         this.nroOrder = nroOrder,
         this.timestamp = timestamp,

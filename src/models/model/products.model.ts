@@ -1,20 +1,24 @@
-export class Product {
-    public id: string
-    public name: string
-    public category: string
-    public description: string
-    public foto: string
-    public price: number
+import { IsNotEmpty } from 'class-validator';
 
-    constructor(id: string, category: string, name: string, description: string, foto: string, price:number){
-        this.id = id;
+export class Product {
+    @IsNotEmpty()
+    readonly name: string;
+    @IsNotEmpty()
+    readonly category: string;
+    @IsNotEmpty()
+    readonly description: string;
+    @IsNotEmpty()
+    readonly foto: string;
+    @IsNotEmpty()
+    readonly price: number;
+
+    constructor(name: string, category: string, description: string, foto: string, price: number){
         this.name = name;
         this.category = category;
         this.description = description;
         this.foto = foto;
         this.price = price;
     }
-
 }
 
 export class Products {
