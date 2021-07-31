@@ -1,6 +1,6 @@
 const config = require('../config');
 import mongoDBConnection from'../services/mongoDBConnection';
-const userModel = require('../models/model/user.model');
+import userModel from '../models/model/user.model';
 const JWTstrategy = require('passport-jwt').Strategy;
 const ExtractJWT = require('passport-jwt').ExtractJwt;
 const {loggerFile} = require('../services/logger');
@@ -8,7 +8,7 @@ const errorLog = loggerFile.GetLogger();
 
 const StrategyOptionsObject = {
     jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
-    secretOrKey: config.PASSPORT_SECRET,
+    secretOrKey: config.JWT_SECRET_KEY,
 }
 
 const jwtStrategy = new JWTstrategy(StrategyOptionsObject, async function (payload: any, done: any){

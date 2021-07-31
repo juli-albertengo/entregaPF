@@ -1,24 +1,24 @@
-import productModel from './products.model'
 import { IsNotEmpty } from 'class-validator';
 
 export class Order{
     @IsNotEmpty()
-    public items: Array<typeof productModel>
+    public userId: string
     @IsNotEmpty()
-    public nroOrder: number
+    public items: Array<object>
     @IsNotEmpty()
     public timestamp: string
     @IsNotEmpty()
     public status: string
     @IsNotEmpty()
-    public email: string
+    public orderTotal: number
 
-    constructor(items: Array<typeof productModel>, nroOrder: number, timestamp: string, status: string, email: string){
+
+    constructor(userId: string, items: Array<object>, timestamp: string, status: string, orderTotal: number){
+        this.userId = userId,
         this.items = items,
-        this.nroOrder = nroOrder,
         this.timestamp = timestamp,
         this.status = status,
-        this.email = email
+        this.orderTotal = orderTotal
     }
 }
 
@@ -29,11 +29,11 @@ import mongoose from 'mongoose';
 const order = 'order';
 
 const orderSchema = new mongoose.Schema({
+    userId: {type: String, required: true},
     items: {type: Array, required: true, max: 50},
-    nroOrder: {type: Number, required: true},
     timestamp: {type: String, required: true},
     status: {type: String, required: true, max: 50},
-    email: {type: String, required: true},
+    orderTotal: {type: Number, required: true},
 })
 
 const orderModel = mongoose.model(order, orderSchema);

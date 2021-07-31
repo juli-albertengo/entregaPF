@@ -16,7 +16,7 @@ class MongoDBConnection{
 
     static async dbConnect(){
         try {
-            await mongoose.connect(config.MONGO_CONNECTION_STRING, {useNewUrlParser: true, useUnifiedTopology: true});
+            await mongoose.connect(config.MONGO_CONNECTION_STRING, {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true});
             //consoleLog.info(`dbConnect was called`);
             return `Mongo DB Connection established`;
         } catch (error) {

@@ -13,8 +13,10 @@ class AuthRouter {
     start(){
         authRouter.post('/signup',  this.AuthController.signup);
         authRouter.post('/login', this.AuthController.login);
-        authRouter.get('/logout', this.AuthController.logout);
-        authRouter.get('/*', (req, res) => {res.json({message: `Please request a valid url`})});
+        authRouter.get('/*', (req, res) => {
+            res.status(400);
+            res.json({message: `Please request a valid url`}
+        )});
     
         return authRouter;
     }

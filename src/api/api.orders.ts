@@ -7,19 +7,20 @@ export class ApiOrders {
         this.ordersDAO = OrdersFactoryDAO.get('MONGO')
     }
 
-    async getOrderById(id: string){
-        return await this.ordersDAO.getOrderById(id)
+    async getAllOrdersByUserId(id: string){
+        return await this.ordersDAO.getAllOrdersByUserId(id)
     }
 
-    async addOrder(order: any){
-        return await this.ordersDAO.addOrder(order)
+    async getSingleOrderByUserId(idUser: string, idOrder: string){
+        return await this.ordersDAO.getSingleOrderByUserId(idUser, idOrder)
     }
 
-    async updateOrderById(id: string, order: any) { 
-        return await this.ordersDAO.updateOrderById(id,order) 
+    async createOrder(order: any){
+        return await this.ordersDAO.createOrder(order)
     }
-    
-    async deleteOrder(id: string) { 
-        return await this.ordersDAO.deleteOrder(id) 
+
+    async completeOrder(id: string) { 
+        return await this.ordersDAO.completeOrder(id) 
     }
+
 }

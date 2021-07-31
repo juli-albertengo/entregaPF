@@ -1,29 +1,39 @@
-import productModel from './products.model';
 import { IsNotEmpty } from 'class-validator';
 
 export class Cart{
     @IsNotEmpty()
-    public email: string
+    public userId: string
     @IsNotEmpty()
-    public timestamp: Date
+    public timestamp: string
     @IsNotEmpty()
-    public deliveryAddress: string
+    public deliveryAddress: DeliveryAddress
     @IsNotEmpty()
-    public products: Array<typeof productModel>
+    public products: Array<object>
 
-    constructor(email: string, timestamp: Date, deliveryAddress: string, products: Array<typeof productModel>){
-        this.email = email;
+    constructor(userId: string, timestamp: string, deliveryAddress: DeliveryAddress, products: Array<object>){
+        this.userId = userId;
         this.timestamp = timestamp;
         this.deliveryAddress = deliveryAddress;
         this.products = products;
     }
 }
 
-export class Carts{
-    carts: Array<Cart>;
-    
-    constructor(arrayCarts: Array<Cart>){
-        this.carts = arrayCarts;
+export class DeliveryAddress{
+    @IsNotEmpty()
+    public street: string
+    @IsNotEmpty()
+    public streetNumber: number
+    @IsNotEmpty()
+    public postalCode: number
+    public floor: string
+    public appartment: string
+
+    constructor(street: string, streetNumber: number, postalCode: number, floor: string, appartment: string){
+        this.street = street,
+        this.streetNumber = streetNumber,
+        this.postalCode = postalCode,
+        this.floor = floor,
+        this.appartment = appartment
     }
 }
 
@@ -34,9 +44,9 @@ import mongoose from 'mongoose';
 const carts = 'carts';
 
 const cartSchema = new mongoose.Schema({
-    email: {type: String, required: true, max: 50},
+    userId: {type: String, required: true, unique: true},
     timestamp: {type: String, required: true},
-    deliveryAddress: {type: String, required: true},
+    deliveryAddress: {type: Object, required: true},
     products: {type: Array, required: true}
 })
 

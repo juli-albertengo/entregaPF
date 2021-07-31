@@ -19,8 +19,8 @@ const sendRegistrationEmail = (userName) => {
     const mailOptionsForRegistration = {
         from: 'App Node.js',
         to: 'aubree.kshlerin@ethereal.email',
-        subject: 'Nuevo registro',
-        html: `<p style="color: blue;">There has been a new signup! => ${userName} </p>`
+        subject: 'New User Registration!',
+        html: `<p style="color: blue;"> There has been a new signup! => Welcome ${userName} </p>`
     }
 
     transporter.sendMail(mailOptionsForRegistration, (err, info) => {
@@ -32,12 +32,12 @@ const sendRegistrationEmail = (userName) => {
     })
 } 
 
-const sendNewOrderEmail = (cartMail) => {
+const sendNewOrderEmail = (orderMail) => {
     const mailOptionsForNewOrder = {
         from: 'App Node.js',
         to: 'aubree.kshlerin@ethereal.email',
-        subject: 'Nueva Orden Generada',
-        html: `<p style="color: blue;">There has been a new order! => ${cartMail} </p>`
+        subject: 'New Order Submitted!',
+        html: `<p style="color: blue;"> There has been a new order! => User email: ${orderMail} </p>`
     }
 
     transporter.sendMail(mailOptionsForNewOrder, (err, info) => {

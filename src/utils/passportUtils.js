@@ -17,8 +17,7 @@ const issueJWT = (user) => {
         sub: _id,
         iat: Date.now()
     }
-
-    const signedToken = jsonwebtoken.sign(payload, config.PASSPORT_SECRET, { expiresIn: '30m'});
+    const signedToken = jsonwebtoken.sign(payload, config.JWT_SECRET_KEY, { expiresIn: config.TOKEN_KEEP_ALIVE});
 
     return signedToken;
 }

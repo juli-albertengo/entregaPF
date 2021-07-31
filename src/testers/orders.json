@@ -1,0 +1,21 @@
+{
+    "userId": "userID",
+    "items": [
+        {
+            "idProduct": "IDPRODUCTO",
+            "amountOfProduct": 5,
+            "priceOfProduct": 40
+        }, {
+            "idProduct": "IDPRODUCTO",
+            "amountOfProduct": 60,
+            "priceOfProduct": 5
+        }, {
+            "idProduct": "IDPRODUCTO",
+            "amountOfProduct": 5,
+            "priceOfProduct": 3
+        }
+    ],
+    "timestamp": "sometime",
+    "status": "COMPLETED",
+    "orderTotal": 50
+}

@@ -1,5 +1,6 @@
 import express from 'express';
 import { OrdersController } from "../controller/orders.controller";
+const passport = require('passport');
 
 const ordersRouter = express.Router();
 
@@ -11,10 +12,9 @@ class OrdersRouter {
     }
 
     start(){
-        ordersRouter.get('/id/:id', this.ordersController.getOrderById);
-        ordersRouter.post('/', this.ordersController.addOrder);
-        ordersRouter.patch('/id/:id', this.ordersController.updateOrderById);
-        ordersRouter.delete('/id/:id', this.ordersController.deleteOrder);
+        ordersRouter.get('/', passport.authenticate('jwt', {session: false}), this.ordersController.getAllOrdersByUserId);
+        ordersRouter.get('/:id', passport.authenticate('jwt', {session: false}), this.ordersController.getSingleOrderByUserId);
+        ordersRouter.post('/complete', passport.authenticate('jwt', {session: false}), this.ordersController.completeOrder);
         ordersRouter.get('/*', (req, res) => {res.json({message: `Please request a valid url`})})
     
         return ordersRouter;

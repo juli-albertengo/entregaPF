@@ -1,0 +1,8 @@
+{
+    "name": "Black Notebook",
+    "category": "notebooks",
+    "description": "It is a black notebook",
+    "fotos": ["idFoto1", "idFoto2"],
+    "price": 20,
+    "stock": 40
+}

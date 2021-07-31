@@ -1,6 +1,5 @@
 import {Request, Response} from 'express';
 import {ApiOrders} from '../api/api.orders';
-const { sendNewOrderEmail } = require('../utils/nodemailerUtils');
 const {loggerFile} = require('../services/logger');
 const errorLog = loggerFile.GetLogger();
 
@@ -11,76 +10,64 @@ export class OrdersController {
         this.apiOrders = new ApiOrders()
     }
 
-    getOrderById = async(req: Request, res: Response) => {
+    getAllOrdersByUserId = async(req: any, res: Response) => {
         try {
-            const {id} = req.params;
-            let order = await this.apiOrders.getOrderById(id);
+            const user = req.user
+            const id = user._id;
+            let orders = await this.apiOrders.getAllOrdersByUserId(id);
+            res.status(200);
+            res.json(orders);
+        }
+        catch (error){
+            errorLog.error(error);
+            res.status(500);
+            res.json({error: "There has been an error fetching the order."});
+        }
+    }
+
+    getSingleOrderByUserId = async(req: any, res: Response) => {
+        try {
+            const user = req.user
+            const idUser = user._id;
+            const {id} = req.params
+            let order = await this.apiOrders.getSingleOrderByUserId(idUser, id);
             res.status(200);
             res.json(order);
         }
         catch (error){
             errorLog.error(error);
+            res.status(500);
             res.json({error: "There has been an error fetching the order."});
         }
     }
 
-    addOrder = async (req: Request, res: Response) => {
+    completeOrder = async (req: any, res: Response) => {
         try {
-            const {items, nroOrder, status, email} = req.body;
-            if(
-                items !== undefined && items !== null &&
-                nroOrder !== undefined && nroOrder !== null &&
-                status !== undefined && status !== null &&
-                email !== undefined && email !== null
-            ){
-                const order = {items, nroOrder, status, timestamp: new Date(Date.now()).toDateString(), email,}
-                let addedOrder = await this.apiOrders.addOrder(order);
-                sendNewOrderEmail(email);
-                res.json(addedOrder);
+            const user = req.user;
+            const idUser = user._id;
+            const {idOrder} = req.body
+            let order = await this.apiOrders.getSingleOrderByUserId(idUser, idOrder)
+            if(Object.keys(order).length == 0){
+                res.status(400);
+                res.json({error: `The order doesn't exist`})
+            } else if(order.status != 'Generated'){
+                res.status(400);
+                res.json({error: `The order's status is ${order.status}`})
             } else {
-                errorLog.error(`User didn't provide the data required`)
-                res.json({})
+                let modifiedOrder = await this.apiOrders.completeOrder(order);
+                if(Object.keys(modifiedOrder).length == 0){
+                    res.status(500);
+                    res.json({error: `There has been a problem updating the order`})
+                } else {
+                    res.status(200);
+                    res.json(modifiedOrder)
+                }
             }
         }
         catch (error){
             errorLog.error(error);
-            res.json({error: "There has been an error saving the order"})
-        }
-    }
-
-    updateOrderById = async(req: Request, res: Response) => {
-        try {
-            const {id} = req.params;
-            const {items, nroOrder, timestamp, status, email} = req.body;
-            if(
-                items !== undefined && items !== null &&
-                nroOrder !== undefined && nroOrder !== null &&
-                status !== undefined && status !== null &&
-                email !== undefined && email !== null
-            ){
-                const order = {items, nroOrder, status, timestamp: new Date(Date.now()).toDateString(), email,}
-                let modifiedOrder = await this.apiOrders.updateOrderById(id, order);
-                res.json(modifiedOrder);
-            } else {
-                errorLog.error(`User didn't provide the data required`)
-                res.json({})
-            }
-        }
-        catch (error){
-            errorLog.error(error);
-            res.json({error: "There has been an error updating the order."})
-        }
-    }
-
-    deleteOrder = async(req: Request, res: Response) => {
-        try{
-            const {id} = req.params;
-            let deletedOrder = await this.apiOrders.deleteOrder(id);
-            res.json(deletedOrder);
-        }
-        catch (error){
-            errorLog.error(error)
-            res.json({error: "There has been an error deleting the cart."})
+            res.status(500);
+            res.json({error: "There has been an error updating the order"})
         }
     }
 }

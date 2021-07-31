@@ -1,5 +1,6 @@
 import mongoDBConnection from '../../services/mongoDBConnection';
 import orderModel from '../model/orders.model';
+import {Order} from '../model/orders.model';
 const {loggerFile} = require('../../services/logger');
 const errorLog = loggerFile.GetLogger();
 
@@ -9,21 +10,38 @@ export class OrdersDBMongoDAO {
     constructor() {
     }
 
-    async getOrderById(id: string){
+    async getAllOrdersByUserId(id: string){
         try {
             this.connection = await mongoDBConnection.Get()
-            let cart = await orderModel.findOne({_id: id})
-            if(!cart){
+            let orders = await orderModel.find({userId: id})
+            if(!orders){
+                return []
+            }
+            return orders;
+        } catch (error){
+            errorLog.error(error)
+            return [];
+        }
+    }
+
+    async getSingleOrderByUserId(userId: string, orderId: string){
+        try {
+            this.connection = await mongoDBConnection.Get()
+            let order = await orderModel.findOne({_id: orderId})
+            if(!order){
                 return {}
             }
-            return cart;
+            if(order.userId != userId){
+                return {}
+            }
+            return order;
         } catch (error){
             errorLog.error(error)
             return {};
         }
     }
 
-    async addOrder(order: any){
+    async createOrder(order: Order){
         let orderToSave = new orderModel(order);
         try {
             this.connection = await mongoDBConnection.Get()
@@ -35,34 +53,24 @@ export class OrdersDBMongoDAO {
         }
     }
 
-    async updateOrderById(id: string, updatedOrder: any){
+    async completeOrder(id: Order){
         try {
             this.connection = await mongoDBConnection.Get()
-            let responseModification = await orderModel.updateOne({_id: id}, {$set: updatedOrder});
+            let order = await orderModel.findOne({_id: id})
+            if(!order){
+                return {}
+            }
+            order.status = 'Completed'
+            const responseModification = await orderModel.updateOne({_id: order._id}, {$set: order})
             if(responseModification.nModified <= 0){
                 return {}
             }
-            const modifiedOrder = await orderModel.findOne({_id: id})
-            return modifiedOrder;
-        } catch (error) {
-            errorLog.error(error);
-            return {}
+            return order;
+        } catch (error){
+            errorLog.error(error)
+            return [];
         }
     }
 
-    async deleteOrder(id: string){
-        try {
-            this.connection = await mongoDBConnection.Get()
-            const deletedOrder = await orderModel.findOne({_id: id})
-            let responseDeletion = await orderModel.deleteOne({_id: id})
-            if(responseDeletion.deletedCount > 0){
-                return deletedOrder
-            } else {
-                return {};
-            }
-        } catch (error){
-            errorLog.error(error);
-            return {}
-        }
-    }
+
 }

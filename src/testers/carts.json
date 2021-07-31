@@ -1,0 +1,25 @@
+{
+    "userId": "userID",
+    "timestamp": "timestampA",
+    "deliveryAddress": {
+        "street": "Bauness 2222",
+        "streetNumber": 333,
+        "postalCode": 123,
+        "floor": "5",
+        "appartment": "A"
+    },
+    "products": [
+        {
+            "productId": "productID",
+            "amountOfProduct": 5
+        },
+        {
+            "productId": "productID",
+            "amountOfProduct": 7
+        },
+        {
+            "productId": "productID",
+            "amountOfProduct": 6
+        }
+    ]
+}

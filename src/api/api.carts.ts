@@ -7,23 +7,23 @@ export class ApiCarts {
         this.cartsDAO = CartsFactoryDAO.get('MONGO')
     }
 
-    async getCartById(id: string){
-        return await this.cartsDAO.getCartById(id)
+    async getCartByUserId(id: string){
+        return await this.cartsDAO.getCartByUserId(id)
     }
 
-    async addCart(cart: any){
-        return await this.cartsDAO.addCart(cart)
+    async createCart(cart: any){
+        return await this.cartsDAO.createCart(cart)
     }
 
-    async addProductsToCart(id: string, products: any) { 
-        return await this.cartsDAO.addProductsToCart(id, products) 
+    async addProductToCart(id: string, idProduct: string, amountOfProduct: number, priceOfProduct: number) { 
+        return await this.cartsDAO.addProductToCart(id, idProduct, amountOfProduct, priceOfProduct) 
     }
 
-    async deleteProductFromCart(id: string, products: any) { 
-        return await this.cartsDAO.deleteProductFromCart(id, products) 
+    async deleteProductFromCart(id: string, idProduct: string, amountOfProduct: number) { 
+        return await this.cartsDAO.deleteProductFromCart(id, idProduct, amountOfProduct) 
     }
-    
-    async deleteCart(id: string) { 
-        return await this.cartsDAO.deleteCart(id) 
+
+    async resetCart(id: string){
+        return await this.cartsDAO.resetCart(id);
     }
 }

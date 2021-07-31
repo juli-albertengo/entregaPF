@@ -1,0 +1,22 @@
+[      
+    { 
+        "fullName": "Julieta A",
+        "phone": 1165908764,
+        "email": "juli@hotmail.com",
+        "admin": true,
+        "username": "juligenia",
+        "password": "",
+        "duplicatedPassword": "",
+        "deliveryAddress": {
+            "street": "Great Avenue",
+            "streetNumber": 333,
+            "postalCode": 1236,
+            "floor": "5",
+            "appartment": "A"
+        }    
+    }, {
+        "tokenPruebaADMIN": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MTA1OTZlN2QzYzljNjUzZTQ0ODQxYjkiLCJpYXQiOjE2Mjc3NTc2MTgxNTUsImV4cCI6MTYyNzc1NzYxODE1OH0.zD9TtPn7X-HG7p392loMJCudB4gUu5svpm_JlpBxTtU" 
+    }, {
+        "tokenPruebaNOTADMIN": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MTA1OTcyM2QzYzljNjUzZTQ0ODQxYzIiLCJpYXQiOjE2Mjc3NTc4MTkwMjIsImV4cCI6MTYyNzc1NzgxOTAyNX0.ORmAGCIwaq6U7TfuO8M23HTQvpKOW-bPAzxq-nTozgU" 
+    }
+]
