@@ -6,6 +6,9 @@ const {ApiProducts} = require('../api/api.products');
 
 const apiProducts = new ApiProducts();
 
+//Disclaimer => I tried using a fileFilter but it didn't work with GridFsStorage. I searched the documentation but I didn't find a way to prevent
+//                  the user from uploading the file. So, the best that I could do was to later delete the files I didn't want to save. 
+
 const storage = new GridFsStorage({
     url: config.MONGO_CONNECTION_STRING,
     options: { useNewUrlParser: true, useUnifiedTopology: true },

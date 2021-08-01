@@ -1,15 +1,15 @@
-import { Request, Response } from 'express';
+import { Response } from 'express';
 import {ApiCarts} from '../api/api.carts';
 import {ApiOrders} from '../api/api.orders';
+import {ApiProducts} from '../api/api.products';
 import {Order} from '../models/model/orders.model';
 import {validate} from 'class-validator';
 const { sendNewOrderEmail } = require('../utils/nodemailerUtils');
-import {ApiProducts} from '../api/api.products';
 const {loggerFile} = require('../services/logger');
 const errorLog = loggerFile.GetLogger();
 
-const apiProducts = new ApiProducts();
 const apiOrders = new ApiOrders();
+const apiProducts = new ApiProducts();
 
 export class CartsController {
     public apiCarts: ApiCarts;
@@ -23,8 +23,13 @@ export class CartsController {
             const user = req.user;
             const id = user._id;
             let cart = await this.apiCarts.getCartByUserId(id);
-            res.status(200);
-            res.json(cart);
+            if(Object.keys(cart).length == 0){
+                res.status(400);
+                res.json(cart)
+            } else {
+                res.status(200);
+                res.json(cart);
+            }
         }
         catch (error){
             errorLog.error(error);
@@ -56,8 +61,10 @@ export class CartsController {
                 res.json({error: `The product doesn't exist or the amount exceeds the stock available`})
             } else {
 
-                //If no errors => Perform the update in the cart
+                //If amount and productId are okey => Perform the update in the cart
                 let cart = await this.apiCarts.addProductToCart(id, idProduct, amountOfProduct, productToAdd.price);
+
+                //In case there's an error updating such cart
                 if(Object.keys(cart).length == 0){
                     res.status(400);
                     res.json(cart)
@@ -70,7 +77,7 @@ export class CartsController {
                         errorLog(`There's been an error updating stock in product => ${responseProductUpdate}`)
                     }
 
-                    //Finally return the cart
+                    //Finally return the updated cart
                     res.status(200);
                     res.json(cart);
                 }
@@ -106,8 +113,10 @@ export class CartsController {
                 res.json({error: `The product doesn't exist`})
             } else {
 
-                //If no errors => Perform the update
+                //If amount and productId are okey => Perform the update
                 let cart = await this.apiCarts.deleteProductFromCart(id, idProduct, amountOfProduct);
+
+                //In case there's an error updating such cart
                 if(Object.keys(cart).length == 0){
                     res.status(400);
                     res.json(cart)
@@ -153,7 +162,7 @@ export class CartsController {
 
                 //STEP 2: Generate Order
                 const timestamp = new Date(Date.now()).toDateString();
-                let orderTotal = 0
+                let orderTotal = 0;
                 cart.products.forEach( (product: any) => {
                     orderTotal = orderTotal + product.priceOfProduct * product.amountOfProduct
                 });
@@ -171,6 +180,9 @@ export class CartsController {
                     } else {
                         //STEP 3: Clean the cart & send Email
                         const modifiedCart = await this.apiCarts.resetCart(id);
+                        if(modifiedCart.products.length != 0){
+                            errorLog.error(`There has been an error reseting the cart after submitting order`)
+                        }
                         sendNewOrderEmail(user.email);
 
                         res.status(201);

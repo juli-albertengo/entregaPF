@@ -43,8 +43,13 @@ export class ProductsController {
         try {
             const {id} = req.params;
             let product = await this.apiProducts.getProductById(id);
-            res.status(200);
-            res.json(product);
+            if(Object.keys(product).length == 0){
+                res.status(400);
+                res.json({error: `The productId is not valid`})
+            } else {
+                res.status(200);
+                res.json(product);
+            }
         }
         catch (error){
             errorLog.error(error);
@@ -69,8 +74,13 @@ export class ProductsController {
                     res.json({error: `You must provide the required data => ${resultValidation}`});
                 } else {
                     let addedProduct = await this.apiProducts.addProduct(product);
-                    res.status(201);
-                    res.json(addedProduct);
+                    if(Object.keys(addedProduct).length == 0){
+                        res.status(500);
+                        res.json({error: `There has been a problem adding the product`})
+                    } else {
+                        res.status(201);
+                        res.json(addedProduct);
+                    }
                 }
             }
         }
@@ -122,9 +132,9 @@ export class ProductsController {
             } else{
                 const {id} = req.params;
                 let deletedProduct = await this.apiProducts.deleteProduct(id);
-                if(deletedProduct == {}){
+                if(Object.keys(deletedProduct).length == 0){
                     res.status(404);
-                    res.json({})
+                    res.json({error: `There has been a problem deleting the required product`})
                 } else {
                     res.status(200)
                     res.json(deletedProduct);

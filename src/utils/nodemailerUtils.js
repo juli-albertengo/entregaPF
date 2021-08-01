@@ -14,7 +14,6 @@ const transporter = nodemailer.createTransport({
     }
 });
 
-
 const sendRegistrationEmail = (userName) => {
     const mailOptionsForRegistration = {
         from: 'App Node.js',

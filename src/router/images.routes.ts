@@ -7,6 +7,7 @@ const errorLog = loggerFile.GetLogger();
 
 const imagesRouter = express.Router();
 
+//Helper middleware function to check if user is admin or not
 const checkAdmin = async(req: any, res:any, next: any) =>{
     const user = req.user;
     try{

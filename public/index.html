@@ -47,9 +47,6 @@
     const messagesForm = document.getElementById('messagesForm');
     const messagesContainer = document.getElementById('messagesContainer');
 
-    let date = new Date()
-    let now = date.toLocaleString()
-
     messagesForm.addEventListener('submit', (event)=>{
         event.preventDefault();
         if(username.value && message.value){

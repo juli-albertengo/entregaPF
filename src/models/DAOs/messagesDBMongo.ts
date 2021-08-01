@@ -34,6 +34,7 @@ export class MessagesDBMongoDAO {
     }
 
     async saveMessage(userData: any, messageValue: any){
+        //Set the type and the id of the message to store in DB depending on if it is from "USER" or "SERVER"
         let type = '';
         let id = '';
         if(userData == 'Server'){
@@ -43,6 +44,7 @@ export class MessagesDBMongoDAO {
             type = 'User'
             id = userData._id
         }
+
         const messageToValidate = new Message(id, type, messageValue);
         const resultValidationMessage = await validate(messageToValidate);
         if(resultValidationMessage.length > 0){
@@ -70,14 +72,16 @@ export class MessagesDBMongoDAO {
                     message : JSON.stringify(products)
                 }
                 return stock;
+
             case 'Orders':
                 const orderUser = await userModel.findOne({'username': userData})
-                const userOrder = await apiOrders.getAllOrdersByUserId(orderUser._id);
-                const order = {
+                const userOrders = await apiOrders.getAllOrdersByUserId(orderUser._id);
+                const orders = {
                     typeOfResponse: 'order',
-                    message: JSON.stringify(userOrder)
+                    message: JSON.stringify(userOrders)
                 }
-                return order;
+                return orders;
+
             case 'Cart':
                 const cartUser = await userModel.findOne({'username': userData})
                 const userCart = await apiCarts.getCartByUserId(cartUser._id);
@@ -86,6 +90,7 @@ export class MessagesDBMongoDAO {
                     message: JSON.stringify(userCart)
                 }
                 return cart
+
             default:
               const defaultMessage = `Hello! I couldn't understand your message. Please provide one of the following options:
                         Stock: To receive our current stock.

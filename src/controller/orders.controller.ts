@@ -1,4 +1,4 @@
-import {Request, Response} from 'express';
+import {Response} from 'express';
 import {ApiOrders} from '../api/api.orders';
 const {loggerFile} = require('../services/logger');
 const errorLog = loggerFile.GetLogger();

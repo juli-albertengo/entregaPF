@@ -13,9 +13,11 @@ class CartsRouter {
 
     start(){
         cartsRouter.get('/', passport.authenticate('jwt', {session: false}), this.cartsController.getCartByUserId);
+
         cartsRouter.post('/add', passport.authenticate('jwt', {session: false}), this.cartsController.addToCart);
         cartsRouter.post('/delete', passport.authenticate('jwt', {session: false}), this.cartsController.deleteFromCart)
         cartsRouter.post('/submit', passport.authenticate('jwt', {session: false}), this.cartsController.submitCart);
+        
         cartsRouter.get('/*', (req, res) => {
             res.status(400);
             res.json({message: `Please request a valid url`
