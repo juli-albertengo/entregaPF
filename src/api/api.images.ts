@@ -14,4 +14,12 @@ export class ApiImages {
     async deleteImage(id: string) { 
         return await this.imagesDAO.deleteImage(id) 
     }
+
+    async deleteImageOfWrongProductId(id: string) { 
+        return await this.imagesDAO.deleteImageOfWrongProductId(id) 
+    }
+
+    async deleteFileOfWrongType(id: string) { 
+        return await this.imagesDAO.deleteFileOfWrongType(id) 
+    }
 }

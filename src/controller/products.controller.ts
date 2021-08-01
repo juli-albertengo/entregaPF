@@ -98,8 +98,13 @@ export class ProductsController {
                     res.json({error: `You must provide the required data => ${resultValidation}`});
                 } else {
                     let modifiedProduct = await this.apiProducts.updateProductById(id, product);
-                    res.status(200);
-                    res.json(modifiedProduct);
+                    if(Object.keys(modifiedProduct).length == 0){
+                        res.status(500);
+                        res.json({error: `There has been a problem updating the product`})
+                    } else {
+                        res.status(200);
+                        res.json(modifiedProduct)
+                    }
                 }
             }
         } catch (error){

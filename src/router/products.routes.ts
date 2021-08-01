@@ -18,7 +18,10 @@ class ProductsRouter {
         productsRouter.post('/', passport.authenticate('jwt', {session: false}), this.ProductsController.addProduct);
         productsRouter.patch('/:id', passport.authenticate('jwt', {session: false}), this.ProductsController.updateProductById);
         productsRouter.delete('/:id', passport.authenticate('jwt', {session: false}), this.ProductsController.deleteProduct);
-        productsRouter.get('/*', (req, res) => {res.json({message: `Please request a valid url`})})
+        productsRouter.get('/*', (req, res) => {
+            res.status(400);
+            res.json({message: `Please request a valid url`
+        })})
     
         return productsRouter;
     }

@@ -1,8 +1,11 @@
-const config = require('../config.js');
 import {Request, Response} from 'express';
 import {ApiImages} from '../api/api.images';
+import {ApiProducts} from '../api/api.products';
+const config = require('../config.js');
 const {loggerFile} = require('../services/logger');
 const errorLog = loggerFile.GetLogger();
+
+const apiProducts = new ApiProducts();
 
 export class ImagesController {
     public apiImages: ApiImages;
@@ -15,29 +18,63 @@ export class ImagesController {
         try {
             const {id} = req.params;
             let stream = await this.apiImages.getImageById(id);
-            res.status(200);
-            stream.pipe(res);
-        }
-        catch (error){
-            errorLog.error(error);
-            res.json({error: "There has been an error fetching the image."});
-        }
-    }
-
-    uploadImage = async (req: Request, res: Response) => {
-        try {
-            if(req.file === undefined){
-                res.json({error: "You must select a file"})
+            if(stream == `File not found`){
+                res.status(404);
+                res.json({error: `The imageId is not valid`})
             } else {
-                console.log(req.file);
-                const imgUrl = `http://localhost:${config.PORT}/api/images/${req.file.filename}`
-                res.status(200)
-                res.send(imgUrl);
+                res.status(200);
+                stream.pipe(res);
             }
         }
         catch (error){
             errorLog.error(error);
-            res.json({error: "There has been an error saving the order"})
+            res.status(500);
+            res.json({error: "There has been an error fetching the image."});
+        }
+    }
+
+    uploadImage = async (req: any, res: Response, err: any) => {
+        const {productId} = req.body
+        try {
+            if(req.file === undefined){
+                res.status(401);
+                res.json({error: "You must select a file"})
+            } else if(req.file.bucketName == 'FILE-WITHOUT-PRODUCTID'){
+                let deletedImage = await this.apiImages.deleteImageOfWrongProductId(req.file.id);
+                if(Object.keys(deletedImage).length == 0){
+                    res.status(400);
+                    res.json({error: `You must provide a valid ProductId. Your file should be deleted => This action couldn't be performed`});
+                } else {
+                    res.status(401);
+                    res.json({error: `You must provide a valid ProductId. Your file has been deleted`})
+                }
+            } else if(req.file.bucketName == 'FILETYPE-NOT-ALLOWED') {  
+                let deletedImage = await this.apiImages.deleteFileOfWrongType(req.file.id);
+                if(Object.keys(deletedImage).length == 0){
+                    res.status(400);
+                    res.json({error: `You must provide a valid file type. Your file should be deleted => This action couldn't be performed`});
+                } else {
+                    res.status(401);
+                    res.json({error: `Your file was of the wrong type and has been deleted. The accepted types are: /jpeg|jpg|png/`})
+                }
+            } else {
+                //Agregar el ID de la foto al array de fotos del producto 
+                const product = await apiProducts.getProductById(productId);
+                product.fotos.push(req.file.id);
+                let modifiedProduct = await apiProducts.updateProductById(product._id, product);
+                if(Object.keys(modifiedProduct).length == 0){
+                    res.status(500);
+                    res.json({error: `There has been a problem updating the Product with your picture`})
+                } else {
+                    const imgUrl = `http://localhost:${config.PORT}/api/images/${req.file.filename}`
+                    res.status(201)
+                    res.send(imgUrl);
+                }
+            }
+        }
+        catch (error){
+            errorLog.error(error);
+            res.json({error: "There has been an error uploading the picture"})
         }
     }
 
@@ -45,10 +82,17 @@ export class ImagesController {
         try {
             const {id} = req.params;
             let deletedImage = await this.apiImages.deleteImage(id);
-            res.json(deletedImage);
+            if(Object.keys(deletedImage).length == 0){
+                res.status(400);
+                res.json({error: `The imageId provided is invalid`});
+            } else {
+                res.status(200);
+                res.json(deletedImage);
+            }
         }
         catch (error){
             errorLog.error(error);
+            res.status(500);
             res.json({error: "There has been an error deleting the image."})
         }
     }
