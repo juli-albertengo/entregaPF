@@ -1,4 +1,4 @@
-import { IsNotEmpty } from 'class-validator';
+import { IsString, IsInt, IsNotEmpty } from 'class-validator';
 
 export class Order{
     @IsNotEmpty()
@@ -8,8 +8,10 @@ export class Order{
     @IsNotEmpty()
     public timestamp: string
     @IsNotEmpty()
+    @IsString()
     public status: string
     @IsNotEmpty()
+    @IsInt()
     public orderTotal: number
 
 

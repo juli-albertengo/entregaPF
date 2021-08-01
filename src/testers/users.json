@@ -1,16 +1,16 @@
 [      
     { 
-        "fullName": "Julieta A",
-        "phone": 1165908764,
-        "email": "juli@hotmail.com",
+        "fullName": "",
+        "phone": 1599999999,
+        "email": "@hotmail.com",
         "admin": true,
-        "username": "juligenia",
+        "username": "",
         "password": "",
         "duplicatedPassword": "",
         "deliveryAddress": {
             "street": "Great Avenue",
-            "streetNumber": 333,
-            "postalCode": 1236,
+            "streetNumber": 555,
+            "postalCode": 5555,
             "floor": "5",
             "appartment": "A"
         }    

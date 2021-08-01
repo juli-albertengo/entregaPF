@@ -1,24 +1,24 @@
 {
-    "userId": "userID",
-    "timestamp": "timestampA",
+    "userId": "",
+    "timestamp": "",
     "deliveryAddress": {
-        "street": "Bauness 2222",
-        "streetNumber": 333,
-        "postalCode": 123,
+        "street": "Great Avenue",
+        "streetNumber": 555,
+        "postalCode": 5555,
         "floor": "5",
         "appartment": "A"
     },
     "products": [
         {
-            "productId": "productID",
+            "productId": "",
             "amountOfProduct": 5
         },
         {
-            "productId": "productID",
+            "productId": "",
             "amountOfProduct": 7
         },
         {
-            "productId": "productID",
+            "productId": "",
             "amountOfProduct": 6
         }
     ]
