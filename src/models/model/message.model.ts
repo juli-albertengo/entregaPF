@@ -22,11 +22,11 @@ import mongoose from 'mongoose';
 const message = 'messages';
 
 const messageSchema = new mongoose.Schema({
-    userId: {type: String, required: true, unique: true},
+    userId: {type: String, required: true},
     type: {type: String, required: true},
     message: {type: String, required: true},
 })
 
-const cartModel = mongoose.model(message, messageSchema);
+const messageModel = mongoose.model(message, messageSchema);
 
-export default cartModel;
+export default messageModel;

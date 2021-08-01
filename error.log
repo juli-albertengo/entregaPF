@@ -1,208 +1,48 @@
-[2021-08-01T12:48:49.883] [ERROR] fileLogger - TypeError: cursor.nextObject is not a function
-    at D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\node_modules\gridfs-stream\lib\index.js:143:12
-    at Collection.<anonymous> (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\node_modules\mongodb\lib\collection.js:478:7)
-    at Collection.deprecated [as find] (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\node_modules\mongodb\lib\utils.js:591:17)
-    at Grid.findOne (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\node_modules\gridfs-stream\lib\index.js:140:14)
-    at ImagesDBMongoDAO.<anonymous> (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\models\DAOs\imagesDBMongo.ts:36:36)
-    at step (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\models\DAOs\imagesDBMongo.ts:33:23)
-    at Object.next (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\models\DAOs\imagesDBMongo.ts:14:53)
-    at fulfilled (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\models\DAOs\imagesDBMongo.ts:5:58)
-    at processTicksAndRejections (internal/process/task_queues.js:97:5)
-[2021-08-01T12:48:49.892] [ERROR] fileLogger - TypeError: stream.pipe is not a function
-    at ImagesController.<anonymous> (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\controller\images.controller.ts:22:20)
-    at step (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\controller\images.controller.ts:33:23)
-    at Object.next (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\controller\images.controller.ts:14:53)
-    at fulfilled (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\controller\images.controller.ts:5:58)
-    at processTicksAndRejections (internal/process/task_queues.js:97:5)
-[2021-08-01T12:49:38.000] [ERROR] fileLogger - TypeError: cursor.nextObject is not a function
-    at D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\node_modules\gridfs-stream\lib\index.js:143:12
-    at Collection.<anonymous> (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\node_modules\mongodb\lib\collection.js:478:7)
-    at Collection.deprecated [as find] (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\node_modules\mongodb\lib\utils.js:591:17)
-    at Grid.findOne (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\node_modules\gridfs-stream\lib\index.js:140:14)
-    at ImagesDBMongoDAO.<anonymous> (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\models\DAOs\imagesDBMongo.ts:36:30)
-    at step (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\models\DAOs\imagesDBMongo.ts:33:23)
-    at Object.next (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\models\DAOs\imagesDBMongo.ts:14:53)
-    at fulfilled (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\models\DAOs\imagesDBMongo.ts:5:58)
-    at processTicksAndRejections (internal/process/task_queues.js:97:5)
-[2021-08-01T12:49:38.007] [ERROR] fileLogger - TypeError: stream.pipe is not a function
-    at ImagesController.<anonymous> (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\controller\images.controller.ts:22:20)
-    at step (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\controller\images.controller.ts:33:23)
-    at Object.next (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\controller\images.controller.ts:14:53)
-    at fulfilled (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\controller\images.controller.ts:5:58)
-    at processTicksAndRejections (internal/process/task_queues.js:97:5)
-[2021-08-01T12:53:09.721] [ERROR] fileLogger - TypeError: Cannot read property '_id' of undefined
-    at new GridReadStream (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\node_modules\gridfs-stream\lib\readstream.js:43:14)
-    at Grid.createReadStream (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\node_modules\gridfs-stream\lib\index.js:53:10)
-    at ImagesDBMongoDAO.<anonymous> (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\models\DAOs\imagesDBMongo.ts:37:36)
-    at step (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\models\DAOs\imagesDBMongo.ts:33:23)
-    at Object.next (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\models\DAOs\imagesDBMongo.ts:14:53)
-    at fulfilled (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\models\DAOs\imagesDBMongo.ts:5:58)
-    at processTicksAndRejections (internal/process/task_queues.js:97:5)
-[2021-08-01T12:53:09.727] [ERROR] fileLogger - TypeError: stream.pipe is not a function
-    at ImagesController.<anonymous> (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\controller\images.controller.ts:22:20)
-    at step (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\controller\images.controller.ts:33:23)
-    at Object.next (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\controller\images.controller.ts:14:53)
-    at fulfilled (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\controller\images.controller.ts:5:58)
-    at processTicksAndRejections (internal/process/task_queues.js:97:5)
-[2021-08-01T12:54:31.185] [ERROR] fileLogger - TypeError: Cannot read property '_id' of undefined
-    at new GridReadStream (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\node_modules\gridfs-stream\lib\readstream.js:43:14)
-    at Grid.createReadStream (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\node_modules\gridfs-stream\lib\index.js:53:10)
-    at ImagesDBMongoDAO.<anonymous> (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\models\DAOs\imagesDBMongo.ts:37:36)
-    at step (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\models\DAOs\imagesDBMongo.ts:33:23)
-    at Object.next (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\models\DAOs\imagesDBMongo.ts:14:53)
-    at fulfilled (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\models\DAOs\imagesDBMongo.ts:5:58)
-    at processTicksAndRejections (internal/process/task_queues.js:97:5)
-[2021-08-01T12:54:31.194] [ERROR] fileLogger - TypeError: stream.pipe is not a function
-    at ImagesController.<anonymous> (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\controller\images.controller.ts:22:20)
-    at step (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\controller\images.controller.ts:33:23)
-    at Object.next (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\controller\images.controller.ts:14:53)
-    at fulfilled (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\controller\images.controller.ts:5:58)
-    at processTicksAndRejections (internal/process/task_queues.js:97:5)
-[2021-08-01T12:55:39.982] [ERROR] fileLogger - TypeError: Cannot read property '_id' of undefined
-    at new GridReadStream (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\node_modules\gridfs-stream\lib\readstream.js:43:14)
-    at Grid.createReadStream (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\node_modules\gridfs-stream\lib\index.js:53:10)
-    at ImagesDBMongoDAO.<anonymous> (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\models\DAOs\imagesDBMongo.ts:38:36)
-    at step (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\models\DAOs\imagesDBMongo.ts:33:23)
-    at Object.next (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\models\DAOs\imagesDBMongo.ts:14:53)
-    at fulfilled (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\models\DAOs\imagesDBMongo.ts:5:58)
-    at processTicksAndRejections (internal/process/task_queues.js:97:5)
-[2021-08-01T12:55:39.990] [ERROR] fileLogger - TypeError: stream.pipe is not a function
-    at ImagesController.<anonymous> (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\controller\images.controller.ts:22:20)
-    at step (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\controller\images.controller.ts:33:23)
-    at Object.next (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\controller\images.controller.ts:14:53)
-    at fulfilled (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\controller\images.controller.ts:5:58)
-    at processTicksAndRejections (internal/process/task_queues.js:97:5)
-[2021-08-01T12:56:09.884] [ERROR] fileLogger - TypeError: Cannot read property 'filename' of null
-    at ImagesDBMongoDAO.<anonymous> (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\models\DAOs\imagesDBMongo.ts:37:58)
-    at step (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\models\DAOs\imagesDBMongo.ts:33:23)
-    at Object.next (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\models\DAOs\imagesDBMongo.ts:14:53)
-    at fulfilled (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\models\DAOs\imagesDBMongo.ts:5:58)
-    at processTicksAndRejections (internal/process/task_queues.js:97:5)
-[2021-08-01T12:56:09.892] [ERROR] fileLogger - TypeError: stream.pipe is not a function
-    at ImagesController.<anonymous> (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\controller\images.controller.ts:22:20)
-    at step (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\controller\images.controller.ts:33:23)
-    at Object.next (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\controller\images.controller.ts:14:53)
-    at fulfilled (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\controller\images.controller.ts:5:58)
-    at processTicksAndRejections (internal/process/task_queues.js:97:5)
-[2021-08-01T12:56:35.225] [ERROR] fileLogger - TypeError: Cannot read property 'filename' of null
-    at ImagesDBMongoDAO.<anonymous> (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\models\DAOs\imagesDBMongo.ts:38:64)
-    at step (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\models\DAOs\imagesDBMongo.ts:33:23)
-    at Object.next (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\models\DAOs\imagesDBMongo.ts:14:53)
-    at fulfilled (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\models\DAOs\imagesDBMongo.ts:5:58)
-    at processTicksAndRejections (internal/process/task_queues.js:97:5)
-[2021-08-01T12:56:35.233] [ERROR] fileLogger - TypeError: stream.pipe is not a function
-    at ImagesController.<anonymous> (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\controller\images.controller.ts:22:20)
-    at step (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\controller\images.controller.ts:33:23)
-    at Object.next (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\controller\images.controller.ts:14:53)
-    at fulfilled (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\controller\images.controller.ts:5:58)
-    at processTicksAndRejections (internal/process/task_queues.js:97:5)
-[2021-08-01T13:00:34.127] [ERROR] fileLogger - Error: Argument passed in must be a single String of 12 bytes or a string of 24 hex characters
-    at new ObjectID (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\node_modules\bson\lib\bson\objectid.js:59:11)
-    at Function.ObjectID (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\node_modules\bson\lib\bson\objectid.js:40:43)
-    at ImagesDBMongoDAO.<anonymous> (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\models\DAOs\imagesDBMongo.ts:35:43)
-    at step (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\models\DAOs\imagesDBMongo.ts:33:23)
-    at Object.next (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\models\DAOs\imagesDBMongo.ts:14:53)
-    at fulfilled (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\models\DAOs\imagesDBMongo.ts:5:58)
-    at processTicksAndRejections (internal/process/task_queues.js:97:5)
-[2021-08-01T13:00:34.133] [ERROR] fileLogger - TypeError: stream.pipe is not a function
-    at ImagesController.<anonymous> (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\controller\images.controller.ts:26:24)
-    at step (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\controller\images.controller.ts:33:23)
-    at Object.next (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\controller\images.controller.ts:14:53)
-    at fulfilled (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\controller\images.controller.ts:5:58)
-    at processTicksAndRejections (internal/process/task_queues.js:97:5)
-[2021-08-01T13:00:58.304] [ERROR] fileLogger - Error: Argument passed in must be a single String of 12 bytes or a string of 24 hex characters
-    at new ObjectID (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\node_modules\bson\lib\bson\objectid.js:59:11)
-    at Function.ObjectID (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\node_modules\bson\lib\bson\objectid.js:40:43)
-    at ImagesDBMongoDAO.<anonymous> (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\models\DAOs\imagesDBMongo.ts:35:43)
-    at step (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\models\DAOs\imagesDBMongo.ts:33:23)
-    at Object.next (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\models\DAOs\imagesDBMongo.ts:14:53)
-    at fulfilled (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\models\DAOs\imagesDBMongo.ts:5:58)
-    at processTicksAndRejections (internal/process/task_queues.js:97:5)
-[2021-08-01T13:00:58.310] [ERROR] fileLogger - TypeError: stream.pipe is not a function
-    at ImagesController.<anonymous> (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\controller\images.controller.ts:27:24)
-    at step (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\controller\images.controller.ts:33:23)
-    at Object.next (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\controller\images.controller.ts:14:53)
-    at fulfilled (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\controller\images.controller.ts:5:58)
-    at processTicksAndRejections (internal/process/task_queues.js:97:5)
-[2021-08-01T13:01:38.041] [ERROR] fileLogger - Error: Argument passed in must be a single String of 12 bytes or a string of 24 hex characters
-    at new ObjectID (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\node_modules\bson\lib\bson\objectid.js:59:11)
-    at Function.ObjectID (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\node_modules\bson\lib\bson\objectid.js:40:43)
-    at ImagesDBMongoDAO.<anonymous> (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\models\DAOs\imagesDBMongo.ts:35:43)
-    at step (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\models\DAOs\imagesDBMongo.ts:33:23)
-    at Object.next (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\models\DAOs\imagesDBMongo.ts:14:53)
-    at fulfilled (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\models\DAOs\imagesDBMongo.ts:5:58)
-    at processTicksAndRejections (internal/process/task_queues.js:97:5)
-[2021-08-01T13:01:38.048] [ERROR] fileLogger - TypeError: stream.pipe is not a function
-    at ImagesController.<anonymous> (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\controller\images.controller.ts:27:24)
-    at step (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\controller\images.controller.ts:33:23)
-    at Object.next (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\controller\images.controller.ts:14:53)
-    at fulfilled (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\controller\images.controller.ts:5:58)
-    at processTicksAndRejections (internal/process/task_queues.js:97:5)
-[2021-08-01T13:02:24.776] [ERROR] fileLogger - Error: Argument passed in must be a single String of 12 bytes or a string of 24 hex characters
-    at new ObjectID (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\node_modules\bson\lib\bson\objectid.js:59:11)
-    at Function.ObjectID (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\node_modules\bson\lib\bson\objectid.js:40:43)
-    at ImagesDBMongoDAO.<anonymous> (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\models\DAOs\imagesDBMongo.ts:35:43)
-    at step (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\models\DAOs\imagesDBMongo.ts:33:23)
-    at Object.next (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\models\DAOs\imagesDBMongo.ts:14:53)
-    at fulfilled (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\models\DAOs\imagesDBMongo.ts:5:58)
-    at processTicksAndRejections (internal/process/task_queues.js:97:5)
-[2021-08-01T13:02:24.784] [ERROR] fileLogger - TypeError: stream.pipe is not a function
-    at ImagesController.<anonymous> (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\controller\images.controller.ts:27:24)
-    at step (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\controller\images.controller.ts:33:23)
-    at Object.next (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\controller\images.controller.ts:14:53)
-    at fulfilled (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\controller\images.controller.ts:5:58)
-    at processTicksAndRejections (internal/process/task_queues.js:97:5)
-[2021-08-01T13:03:53.654] [ERROR] fileLogger - Error: Argument passed in must be a single String of 12 bytes or a string of 24 hex characters
-    at new ObjectID (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\node_modules\bson\lib\bson\objectid.js:59:11)
-    at Function.ObjectID (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\node_modules\bson\lib\bson\objectid.js:40:43)
-    at ImagesDBMongoDAO.<anonymous> (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\models\DAOs\imagesDBMongo.ts:35:43)
-    at step (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\models\DAOs\imagesDBMongo.ts:33:23)
-    at Object.next (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\models\DAOs\imagesDBMongo.ts:14:53)
-    at fulfilled (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\models\DAOs\imagesDBMongo.ts:5:58)
-    at processTicksAndRejections (internal/process/task_queues.js:97:5)
-[2021-08-01T13:03:53.663] [ERROR] fileLogger - TypeError: stream.pipe is not a function
-    at ImagesController.<anonymous> (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\controller\images.controller.ts:27:24)
-    at step (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\controller\images.controller.ts:33:23)
-    at Object.next (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\controller\images.controller.ts:14:53)
-    at fulfilled (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\controller\images.controller.ts:5:58)
-    at processTicksAndRejections (internal/process/task_queues.js:97:5)
-[2021-08-01T13:04:44.309] [ERROR] fileLogger - Error: Argument passed in must be a single String of 12 bytes or a string of 24 hex characters
-    at new ObjectID (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\node_modules\bson\lib\bson\objectid.js:59:11)
-    at Function.ObjectID (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\node_modules\bson\lib\bson\objectid.js:40:43)
-    at ImagesDBMongoDAO.<anonymous> (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\models\DAOs\imagesDBMongo.ts:35:43)
-    at step (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\models\DAOs\imagesDBMongo.ts:33:23)
-    at Object.next (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\models\DAOs\imagesDBMongo.ts:14:53)
-    at fulfilled (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\models\DAOs\imagesDBMongo.ts:5:58)
-[2021-08-01T13:04:44.316] [ERROR] fileLogger - TypeError: stream.pipe is not a function
-    at ImagesController.<anonymous> (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\controller\images.controller.ts:26:24)
-    at step (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\controller\images.controller.ts:33:23)
-    at Object.next (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\controller\images.controller.ts:14:53)
-    at fulfilled (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\controller\images.controller.ts:5:58)
-[2021-08-01T13:10:35.236] [ERROR] fileLogger - Error: Argument passed in must be a single String of 12 bytes or a string of 24 hex characters
-    at new ObjectID (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\node_modules\bson\lib\bson\objectid.js:59:11)
-    at Function.ObjectID (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\node_modules\bson\lib\bson\objectid.js:40:43)
-    at ImagesDBMongoDAO.<anonymous> (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\models\DAOs\imagesDBMongo.ts:51:43)
-    at step (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\models\DAOs\imagesDBMongo.ts:33:23)
-    at Object.next (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\models\DAOs\imagesDBMongo.ts:14:53)
-    at fulfilled (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\models\DAOs\imagesDBMongo.ts:5:58)
-    at processTicksAndRejections (internal/process/task_queues.js:97:5)
-[2021-08-01T13:10:35.254] [ERROR] fileLogger - Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
-    at ServerResponse.setHeader (_http_outgoing.js:518:11)
-    at ServerResponse.header (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\node_modules\express\lib\response.js:771:10)
-    at ServerResponse.send (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\node_modules\express\lib\response.js:170:12)
-    at ServerResponse.json (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\node_modules\express\lib\response.js:267:15)
-    at ImagesController.<anonymous> (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\controller\images.controller.ts:78:17)
-    at step (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\controller\images.controller.ts:33:23)
-    at Object.next (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\controller\images.controller.ts:14:53)
-    at fulfilled (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\controller\images.controller.ts:5:58)
-    at processTicksAndRejections (internal/process/task_queues.js:97:5) {
-  code: 'ERR_HTTP_HEADERS_SENT'
+[2021-08-01T17:34:28.619] [ERROR] fileLogger - MongoError: E11000 duplicate key error collection: proyectoFinal.messages index: userId_1 dup key: { userId: "6105b1a9ac4db509584de9c4" }
+    at Function.create (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\node_modules\mongodb\lib\core\error.js:57:12)
+    at toError (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\node_modules\mongodb\lib\utils.js:130:22)
+    at D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\node_modules\mongodb\lib\operations\common_functions.js:258:39
+    at handler (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\node_modules\mongodb\lib\core\sdam\topology.js:943:24)
+    at D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\node_modules\mongodb\lib\cmap\connection_pool.js:350:13
+    at handleOperationResult (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\node_modules\mongodb\lib\core\sdam\server.js:558:5)
+    at MessageStream.messageHandler (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\node_modules\mongodb\lib\cmap\connection.js:281:5)
+    at MessageStream.emit (events.js:315:20)
+    at MessageStream.EventEmitter.emit (domain.js:483:12)
+    at processIncomingData (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\node_modules\mongodb\lib\cmap\message_stream.js:144:12)
+    at MessageStream._write (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\node_modules\mongodb\lib\cmap\message_stream.js:42:5)
+    at doWrite (_stream_writable.js:403:12)
+    at writeOrBuffer (_stream_writable.js:387:5)
+    at MessageStream.Writable.write (_stream_writable.js:318:11)
+    at TLSSocket.ondata (_stream_readable.js:716:22)
+    at TLSSocket.emit (events.js:315:20) {
+  driver: true,
+  index: 0,
+  code: 11000,
+  keyPattern: { userId: 1 },
+  keyValue: { userId: '6105b1a9ac4db509584de9c4' }
 }
-[2021-08-01T13:11:08.847] [ERROR] fileLogger - Error: Argument passed in must be a single String of 12 bytes or a string of 24 hex characters
-    at new ObjectID (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\node_modules\bson\lib\bson\objectid.js:59:11)
-    at Function.ObjectID (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\node_modules\bson\lib\bson\objectid.js:40:43)
-    at ImagesDBMongoDAO.<anonymous> (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\models\DAOs\imagesDBMongo.ts:51:43)
-    at step (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\models\DAOs\imagesDBMongo.ts:33:23)
-    at Object.next (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\models\DAOs\imagesDBMongo.ts:14:53)
-    at fulfilled (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\src\models\DAOs\imagesDBMongo.ts:5:58)
-    at processTicksAndRejections (internal/process/task_queues.js:97:5)
+[2021-08-01T17:34:28.619] [ERROR] fileLogger - There has been an error saving User message in DB
+[2021-08-01T17:34:29.167] [ERROR] fileLogger - MongoError: E11000 duplicate key error collection: proyectoFinal.messages index: userId_1 dup key: { userId: "Server" }
+    at Function.create (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\node_modules\mongodb\lib\core\error.js:57:12)
+    at toError (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\node_modules\mongodb\lib\utils.js:130:22)
+    at D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\node_modules\mongodb\lib\operations\common_functions.js:258:39
+    at handler (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\node_modules\mongodb\lib\core\sdam\topology.js:943:24)
+    at D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\node_modules\mongodb\lib\cmap\connection_pool.js:350:13
+    at handleOperationResult (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\node_modules\mongodb\lib\core\sdam\server.js:558:5)
+    at MessageStream.messageHandler (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\node_modules\mongodb\lib\cmap\connection.js:281:5)
+    at MessageStream.emit (events.js:315:20)
+    at MessageStream.EventEmitter.emit (domain.js:483:12)
+    at processIncomingData (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\node_modules\mongodb\lib\cmap\message_stream.js:144:12)
+    at MessageStream._write (D:\#1 Programación\CoderHouse\Backend\PF Backend - Julieta Albertengo\node_modules\mongodb\lib\cmap\message_stream.js:42:5)
+    at doWrite (_stream_writable.js:403:12)
+    at writeOrBuffer (_stream_writable.js:387:5)
+    at MessageStream.Writable.write (_stream_writable.js:318:11)
+    at TLSSocket.ondata (_stream_readable.js:716:22)
+    at TLSSocket.emit (events.js:315:20) {
+  driver: true,
+  index: 0,
+  code: 11000,
+  keyPattern: { userId: 1 },
+  keyValue: { userId: 'Server' }
+}
+[2021-08-01T17:34:29.167] [ERROR] fileLogger - There has been an error saving Server message in DB

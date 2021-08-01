@@ -1,9 +1,20 @@
 const config = require('./config');
 const express = require('express');
 import { Request, Response } from 'express';
+import path from 'path'
+import {ApiMessages} from '../src/api/api.messages'; 
 const passport = require('passport');
 const jwtStrategy = require('./middleware/passportAuthMiddleware');
+const {loggerFile} = require('./services/logger');
+const errorLog = loggerFile.GetLogger();
+
+
 const app = express();
+
+const http = require('http').createServer(app);
+const io = require('socket.io')(http);
+
+const apiMessages = new ApiMessages();
 
 import ImagesRouter from './router/images.routes';
 import ProductsRouter from './router/products.routes';
@@ -30,10 +41,45 @@ app.use('/api/cart', routerCarts.start());
 app.use('/api/orders', routerOrders.start());
 app.use('/api/user', routerAuth.start());
 
-app.get('/', (req: Request, res: Response)=>{
+app.get('/chat', (req:Request, res:Response) => {
+    res.sendFile(path.join(__dirname + '/../public/index.html'));
+})  
+
+io.on('connection', async(socket:any) => {
+    /*
+    let msjes = await mensajes.getAllMensajes()
+    socket.emit('recibirMensajes', msjes)
+
+    socket.on('nuevoMensaje', (mensaje:any)=> {
+        mensajes.addMensaje(mensaje);
+        io.emit('nuevoMensaje', mensaje);
+    })
+    */
+   socket.on('new-message', async(data: any) => {
+        const checkedUsername = await apiMessages.checkUsername(data.username);
+        if(Object.keys(checkedUsername).length === 0){
+            io.emit('wrong-username', data.username)
+        } else {
+            const savedMessageFromUser = await apiMessages.saveMessage(checkedUsername, data.message);
+            if(Object.keys(savedMessageFromUser).length === 0){
+                errorLog.error(`There has been an error saving User message in DB`);
+            }
+
+            const responseFromServer = await apiMessages.getAnswerFromServer(data.username, data.message);
+            const savedMessageFromServer = await apiMessages.saveMessage('Server', responseFromServer.message);
+            if(Object.keys(savedMessageFromServer).length === 0){
+                errorLog.error(`There has been an error saving Server message in DB`);
+            }
+            io.emit('resp-message', responseFromServer);
+        }
+   })
+})
+
+app.get('/home', (req: Request, res: Response)=>{
     res.status(200);
     res.json({message: `Welcome Page - Home`});
 })
+
 
 app.get('/error', (req: Request, res: Response)=> {
     res.status(500);
@@ -45,6 +91,6 @@ app.get('/*', (req: Request, res: Response) => {
     res.json({message: `Please request a valid url`});
 })
 
-app.listen(config.PORT, ()=> {
+http.listen(config.PORT, ()=> {
     console.log(`Server listening on ${config.PORT}`);
 })

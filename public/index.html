@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <title>Chat Socket.io</title>
+    <style>
+
+        .error_message{
+            color: #d90429;
+            font-weight: bold;
+        }
+
+    </style>
+</head>
+<body>
+    <main class='container'>
+        <h1>Websocket Chat</h1>
+        <form id='messagesForm'>
+            <div class='form-group'>
+                <label for='username'>Username</label>
+                <input class='form-control' type='text' name='username' id='username' required>
+            </div>
+            <div class='form-group'>
+                <label for='mensaje'>Message</label>
+                <input class='form-control' type='message' name='message' id='message' required>
+            </div>
+            <div class='mt-2'>
+                <input type='submit' class='btn btn-warning'> 
+            </div>
+        </form>
+        <div class='mt-4' id='messagesContainer'>
+            <h3>Messages Container</h3>
+        </div>
+        <div class='mt-4' id='errorsContainer'>
+            <h3>Errors Container</h3>
+        </div>
+    </main>
+</body>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.1.1/socket.io.js" integrity="sha512-oFOCo2/3DtjrJG4N27BjSLQWoiBv171sK6a+JiWjp/7agxC2nCUP358AqzxkBUb5jX8g6CYLPdSKQTbC0weCwA==" crossorigin="anonymous"></script>
+<script>
+    const socket = io()
+
+    const messagesForm = document.getElementById('messagesForm');
+    const messagesContainer = document.getElementById('messagesContainer');
+
+    let date = new Date()
+    let now = date.toLocaleString()
+
+    messagesForm.addEventListener('submit', (event)=>{
+        event.preventDefault();
+        if(username.value && message.value){
+            let data = {username: username.value, message: message.value}
+            socket.emit('new-message', data)
+            username.value = '';
+            message.value = '';
+        }
+    })
+
+    socket.on('wrong-username', (username) => {
+        let p = document.createElement('p')
+        p.innerHTML = `
+        <span class='mx-2 error_message'> The username provided is invalid => ${username}</span>`
+        errorsContainer.appendChild(p);
+    })
+
+    socket.on('resp-message', (respFromServer) => {
+        let p = document.createElement('p')
+        switch(respFromServer.typeOfResponse){
+            case 'stock':
+                p.innerHTML = ` <span> STOCK </span>
+                                <span>${respFromServer.message}</span>`
+            case 'order':
+                p.innerHTML = ` <span> YOUR ORDERS </span>
+                                <span>${respFromServer.message}</span>`
+            case 'cart':
+                p.innerHTML = ` <span> YOUR CART </span>
+                                <span>${respFromServer.message}</span>`
+            case 'default':
+                p.innerHTML = `<span>${respFromServer.message}</span>`
+        }
+         messagesContainer.appendChild(p);
+    })
+    
+</script>
+</html>
