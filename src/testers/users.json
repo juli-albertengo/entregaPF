@@ -15,8 +15,8 @@
             "appartment": "A"
         }    
     }, {
-        "tokenPruebaADMIN": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MTA3MmFiNWJjZWU4YTA2MjgxZDQ5MTUiLCJpYXQiOjE2Mjc4NTk2Mzc1MDUsImV4cCI6MTYyNzg1OTYzNzUwOH0.dP4rTZZdjbMdHe1dOFbJuILL7_zAue9BxZKTFHHgGYQ" 
+        "tokenPruebaADMIN": "" 
     }, {
-        "tokenPruebaNOTADMIN": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MTA3MmIyNWM4YzM2ZDU3MDhkODE0ZTkiLCJpYXQiOjE2Mjc4NTk3NTAwMzEsImV4cCI6MTYyNzg1OTc1MDAzNH0.ZGRv0j1Fg20_n3-ifCUwNOYn_OD_DvdZFetrLkbd7TY" 
+        "tokenPruebaNOTADMIN": "" 
     }
 ]
