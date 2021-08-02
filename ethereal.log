@@ -1,0 +1,40 @@
+[2021-08-01T20:14:01.384] [INFO] etherealLogger - {
+  accepted: [ 'aubree.kshlerin@ethereal.email' ],
+  rejected: [],
+  envelopeTime: 766,
+  messageTime: 563,
+  messageSize: 374,
+  response: '250 Accepted [STATUS=new MSGID=YLP5HIve6CTPV3IdYQcquefY8noJRlr6AAAAH0aYuJAsvnc8gU2paQGLCk4]',
+  envelope: { from: '', to: [ 'aubree.kshlerin@ethereal.email' ] },
+  messageId: '<83625201-e34b-ddd9-972e-1443d1eb4998@DESKTOP-TBGCTM4>'
+}
+[2021-08-01T20:15:53.820] [INFO] etherealLogger - {
+  accepted: [ 'aubree.kshlerin@ethereal.email' ],
+  rejected: [],
+  envelopeTime: 829,
+  messageTime: 601,
+  messageSize: 371,
+  response: '250 Accepted [STATUS=new MSGID=YLP5HIve6CTPV3IdYQcrKiNBHHoRPy2RAAAAILemLZqVpQcHnORqoQfEhSE]',
+  envelope: { from: '', to: [ 'aubree.kshlerin@ethereal.email' ] },
+  messageId: '<baa32dff-7f84-b65d-92f5-080d7ab6e3b9@DESKTOP-TBGCTM4>'
+}
+[2021-08-01T20:51:07.518] [INFO] etherealLogger - {
+  accepted: [ 'aubree.kshlerin@ethereal.email' ],
+  rejected: [],
+  envelopeTime: 821,
+  messageTime: 594,
+  messageSize: 382,
+  response: '250 Accepted [STATUS=new MSGID=YLP5HIve6CTPV3IdYQcza-fY8noJRl3EAAAAIU6zXY.-3pAN3u-b4gqY-tc]',
+  envelope: { from: '', to: [ 'aubree.kshlerin@ethereal.email' ] },
+  messageId: '<a58730d9-a21f-f91e-9027-933caf6ff1b9@DESKTOP-TBGCTM4>'
+}
+[2021-08-01T21:09:02.043] [INFO] etherealLogger - {
+  accepted: [ 'aubree.kshlerin@ethereal.email' ],
+  rejected: [],
+  envelopeTime: 784,
+  messageTime: 578,
+  messageSize: 382,
+  response: '250 Accepted [STATUS=new MSGID=YLP5HIve6CTPV3IdYQc3niNBHHoRPzKJAAAAIhxIcH8FJ0mxD.JOJye1Pv4]',
+  envelope: { from: '', to: [ 'aubree.kshlerin@ethereal.email' ] },
+  messageId: '<2c8438ee-ed59-369b-495b-359b93d84f3c@DESKTOP-TBGCTM4>'
+}

@@ -21,6 +21,7 @@ export class ImagesDBMongoDAO {
         try {
             await mongoDBConnection.Get()
             const fileId = mongoose.mongo.ObjectId(id);
+            gfs.collection("images");
             const file = await gfs.files.findOne({_id: fileId});
             if(file == null || !file){
                 return `File not found`;

@@ -129,32 +129,37 @@ export class AuthController{
     async login(req: Request, res: Response){
         const username = req.body.username;
         const password = req.body.password;
-        try {
-            await mongoDBConnection.Get();
-            userModel.findOne({'username': username}, function(err: any, user: User){
-            if(err){
-                errorLog.error(`Error login: ${err}`)
-                res.status(500);
-                res.json({error: `There has been an error during login ${err}`})
-            } else if(!user){
-                res.status(401)
-                res.json({error: `User not found by username: ${username}`})
-            } else {
-                const isValid = isValidPassword(user, password);
-                if(isValid){
-                const tokenObject = issueJWT(user);
-                res.status(200);
-                res.json({user, token: tokenObject})
-                } else {
-                  res.status(401);
-                  res.json({error: `Wrong password!`})
-                }
-            }
-            })
-        } catch (error) {
-            errorLog.error(error);
-            res.status(500);
-            res.json(`There has been an error during login => ${error}`)
+        if(!username || !password){
+          res.status(400);
+          res.json({error: `You must provide a username and a password`})
+        } else{
+            try {
+              await mongoDBConnection.Get();
+              userModel.findOne({'username': username}, function(err: any, user: User){
+              if(err){
+                  errorLog.error(`Error login: ${err}`)
+                  res.status(500);
+                  res.json({error: `There has been an error during login ${err}`})
+              } else if(!user){
+                  res.status(401)
+                  res.json({error: `User not found by username: ${username}`})
+              } else {
+                  const isValid = isValidPassword(user, password);
+                  if(isValid){
+                  const tokenObject = issueJWT(user);
+                  res.status(200);
+                  res.json({user, token: tokenObject})
+                  } else {
+                    res.status(401);
+                    res.json({error: `Wrong password!`})
+                  }
+              }
+              })
+          } catch (error) {
+              errorLog.error(error);
+              res.status(500);
+              res.json(`There has been an error during login => ${error}`)
+          }
         }
     }
 }
