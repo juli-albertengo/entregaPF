@@ -1,7 +1,7 @@
 # 🚀 Backend Final Project Coderhouse 2021
 
 I build this e-commerce API as my Final Project for a NodeJS  Backend Course. This API handles products, images, carts, orders, users and messages. It uses an MVC model and 
-it is easily scalable and customizable. I chose to use MongoDB Atlas as my type of persistance, but you could set it up with an SQL or PG database, as well as GraphQL. 
+it is easily scalable and customizable. I chose to use MongoDB Atlas as my type of persistance, but you could set it up with a SQL or PG database, as well as GraphQL. 
 I implemented Passport and JWT as my authentication strategy, Nodemailer to send notifications to an Etheral account and socket.io to build a bot-like chat feature. 
 
 ## 🚩 Getting started
