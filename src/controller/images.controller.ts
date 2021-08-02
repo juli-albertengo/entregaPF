@@ -1,4 +1,4 @@
-const config = require('../config.js');
+const config = require('../config');
 import {Request, Response} from 'express';
 import {ApiImages} from '../api/api.images';
 import {ApiProducts} from '../api/api.products';
