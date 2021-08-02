@@ -2,7 +2,7 @@ const config = require('./config');
 const express = require('express');
 import { Request, Response } from 'express';
 import path from 'path'
-import {ApiMessages} from '../src/api/api.messages'; 
+import {ApiMessages} from './api/api.messages'; 
 const passport = require('passport');
 const jwtStrategy = require('./middleware/passportAuthMiddleware');
 const {loggerFile} = require('./services/logger');
